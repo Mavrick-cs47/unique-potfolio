@@ -1,11 +1,26 @@
-import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { useEffect, useRef } from "react";
 
-interface Props { src?: string; alt?: string; }
+interface Props {
+  src?: string;
+  alt?: string;
+}
 
-export default function HeroPortrait({ src = "/profile.jpg", alt = "Chirag portrait" }: Props) {
+export default function HeroPortrait({
+  src = "/profile.jpg",
+  alt = "Chirag portrait",
+}: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
   const rotate = useTransform(scrollYProgress, [0, 1], [-8, 8]);
   const y = useTransform(scrollYProgress, [0, 1], [0, -40]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.04]);
@@ -13,17 +28,24 @@ export default function HeroPortrait({ src = "/profile.jpg", alt = "Chirag portr
   const rx = useSpring(useMotionValue(0), { stiffness: 120, damping: 20 });
   const ry = useSpring(useMotionValue(0), { stiffness: 120, damping: 20 });
 
-  useEffect(() => { const img = new Image(); img.src = src; }, [src]);
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+  }, [src]);
 
   const onMove = (e: React.MouseEvent) => {
-    const el = ref.current; if (!el) return;
+    const el = ref.current;
+    if (!el) return;
     const rect = el.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
     const py = (e.clientY - rect.top) / rect.height;
     rx.set((py - 0.5) * -12);
     ry.set((px - 0.5) * 12);
   };
-  const onLeave = () => { rx.set(0); ry.set(0); };
+  const onLeave = () => {
+    rx.set(0);
+    ry.set(0);
+  };
 
   return (
     <motion.div

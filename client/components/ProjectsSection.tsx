@@ -19,11 +19,13 @@ const projects: Project[] = [
   {
     id: "hotel-booking",
     title: "Hotel Booking Website 🏨",
-    description: "MERN app with auth, room search & booking, and payments. Minimal, professional booking UI.",
+    description:
+      "MERN app with auth, room search & booking, and payments. Minimal, professional booking UI.",
     tags: ["MongoDB", "Express", "React", "Node.js", "Payments"],
     link: "https://stayeasecs47.netlify.app/",
     repo: "#",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2Fc1b75292535b4951ad19acdee978113f?format=webp&width=800",
+    image:
+      "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2Fc1b75292535b4951ad19acdee978113f?format=webp&width=800",
     imageAlt: "Hotel booking website UI",
     features: [
       "User authentication",
@@ -34,11 +36,13 @@ const projects: Project[] = [
   {
     id: "ai-skin-doctor",
     title: "AI SkinDoctor 🤖🩺",
-    description: "AI/ML-powered skin diagnosis with image analysis and instant predictions.",
+    description:
+      "AI/ML-powered skin diagnosis with image analysis and instant predictions.",
     tags: ["AI/ML", "Python", "OpenCV", "Web"],
     link: "https://skindoc-f19d27.netlify.app/",
     repo: "#",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F4419066ca13144c788fa7a14ef32aa46?format=webp&width=800",
+    image:
+      "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F4419066ca13144c788fa7a14ef32aa46?format=webp&width=800",
     imageAlt: "SkinScope analysis UI",
     features: [
       "Image upload & analysis",
@@ -49,11 +53,13 @@ const projects: Project[] = [
   {
     id: "invisible-tshirt",
     title: "Invisible Magic T‑Shirt 🧙‍♂️👕",
-    description: "AR-style web experience simulating invisibility with playful animations.",
+    description:
+      "AR-style web experience simulating invisibility with playful animations.",
     tags: ["Web", "Animations", "AR‑style"],
     link: "https://invisiblecscloak.netlify.app/",
     repo: "#",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F20dcab1e1d8b4182831780188d1a810c?format=webp&width=800",
+    image:
+      "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F20dcab1e1d8b4182831780188d1a810c?format=webp&width=800",
     imageAlt: "Invisibility T-shirt demo UI",
     features: [
       "Interactive UI",
@@ -76,7 +82,9 @@ function useTilt() {
     el.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
   }, []);
   const onLeave = useCallback(() => {
-    const el = ref.current; if (!el) return; el.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = `rotateX(0deg) rotateY(0deg)`;
   }, []);
   return { ref, onMouseMove, onLeave };
 }
@@ -84,18 +92,23 @@ function useTilt() {
 function ParticleAura({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   useEffect(() => {
-    const canvas = canvasRef.current; if (!canvas) return;
-    const ctx = canvas.getContext('2d'); if (!ctx) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
     const container = (canvas.parentElement as HTMLElement) || canvas;
-    let w = container.clientWidth, h = container.clientHeight;
+    let w = container.clientWidth,
+      h = container.clientHeight;
     const dpr = Math.min(2, window.devicePixelRatio || 1);
 
     let resizeRaf = 0;
     const doResize = () => {
-      w = container.clientWidth; h = container.clientHeight;
+      w = container.clientWidth;
+      h = container.clientHeight;
       canvas.width = Math.max(1, Math.floor(w * dpr));
       canvas.height = Math.max(1, Math.floor(h * dpr));
-      if ((ctx as any).resetTransform) (ctx as any).resetTransform(); else ctx.setTransform(1,0,0,1,0,0);
+      if ((ctx as any).resetTransform) (ctx as any).resetTransform();
+      else ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
     };
     const scheduleResize = () => {
@@ -106,24 +119,55 @@ function ParticleAura({ className }: { className?: string }) {
     const ro = new ResizeObserver(scheduleResize);
     ro.observe(container);
 
-    const neonVar = getComputedStyle(document.documentElement).getPropertyValue('--neon').trim();
+    const neonVar = getComputedStyle(document.documentElement)
+      .getPropertyValue("--neon")
+      .trim();
     const [hStr, sStr, lStr] = neonVar.split(/\s+/);
     const hue = parseFloat(hStr) || 178;
     const sat = (parseFloat(sStr) || 100) / 100;
     const lig = (parseFloat(lStr) || 52) / 100;
-    const hslToRgb = (hh: number, ss: number, ll: number): [number, number, number] => {
+    const hslToRgb = (
+      hh: number,
+      ss: number,
+      ll: number,
+    ): [number, number, number] => {
       const c = (1 - Math.abs(2 * ll - 1)) * ss;
-      const hp = ((hh % 360) + 360) % 360 / 60;
+      const hp = (((hh % 360) + 360) % 360) / 60;
       const x = c * (1 - Math.abs((hp % 2) - 1));
-      let r1 = 0, g1 = 0, b1 = 0;
-      if (hp >= 0 && hp < 1) { r1 = c; g1 = x; b1 = 0; }
-      else if (hp < 2) { r1 = x; g1 = c; b1 = 0; }
-      else if (hp < 3) { r1 = 0; g1 = c; b1 = x; }
-      else if (hp < 4) { r1 = 0; g1 = x; b1 = c; }
-      else if (hp < 5) { r1 = x; g1 = 0; b1 = c; }
-      else { r1 = c; g1 = 0; b1 = x; }
+      let r1 = 0,
+        g1 = 0,
+        b1 = 0;
+      if (hp >= 0 && hp < 1) {
+        r1 = c;
+        g1 = x;
+        b1 = 0;
+      } else if (hp < 2) {
+        r1 = x;
+        g1 = c;
+        b1 = 0;
+      } else if (hp < 3) {
+        r1 = 0;
+        g1 = c;
+        b1 = x;
+      } else if (hp < 4) {
+        r1 = 0;
+        g1 = x;
+        b1 = c;
+      } else if (hp < 5) {
+        r1 = x;
+        g1 = 0;
+        b1 = c;
+      } else {
+        r1 = c;
+        g1 = 0;
+        b1 = x;
+      }
       const m = ll - c / 2;
-      return [Math.round((r1 + m) * 255), Math.round((g1 + m) * 255), Math.round((b1 + m) * 255)];
+      return [
+        Math.round((r1 + m) * 255),
+        Math.round((g1 + m) * 255),
+        Math.round((b1 + m) * 255),
+      ];
     };
     const [nr, ng, nb] = hslToRgb(hue, sat, lig);
     const neonColor = (a: number) => `rgba(${nr}, ${ng}, ${nb}, ${a})`;
@@ -134,7 +178,8 @@ function ParticleAura({ className }: { className?: string }) {
       s: 0.3 + Math.random() * 0.8,
       size: 1 + Math.random() * 2,
     }));
-    let raf = 0; const start = performance.now();
+    let raf = 0;
+    const start = performance.now();
     const loop = (t: number) => {
       const dt = (t - start) / 1000;
       ctx.clearRect(0, 0, w, h);
@@ -142,35 +187,64 @@ function ParticleAura({ className }: { className?: string }) {
       ctx.translate(w / 2, h / 2);
       particles.forEach((p, i) => {
         const ang = p.a + dt * p.s * (i % 2 === 0 ? 1 : -1);
-        const x = Math.cos(ang) * p.r + (Math.sin(dt * 0.6 + i) * 4);
-        const y = Math.sin(ang) * p.r + (Math.cos(dt * 0.7 + i) * 4);
+        const x = Math.cos(ang) * p.r + Math.sin(dt * 0.6 + i) * 4;
+        const y = Math.sin(ang) * p.r + Math.cos(dt * 0.7 + i) * 4;
         const g = ctx.createRadialGradient(x, y, 0, x, y, p.size * 6);
         g.addColorStop(0, neonColor(0.9));
-        g.addColorStop(1, 'rgba(0,0,0,0)');
+        g.addColorStop(1, "rgba(0,0,0,0)");
         ctx.fillStyle = g;
-        ctx.beginPath(); ctx.arc(x, y, p.size * 4, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x, y, p.size * 4, 0, Math.PI * 2);
+        ctx.fill();
       });
       ctx.restore();
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
-    return () => { cancelAnimationFrame(raf); if (resizeRaf) cancelAnimationFrame(resizeRaf); ro.disconnect(); };
+    return () => {
+      cancelAnimationFrame(raf);
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      ro.disconnect();
+    };
   }, []);
   return <canvas ref={canvasRef} className={className} />;
 }
 
-function RippleLink({ href, children, className = "", icon }: { href: string; children: React.ReactNode; className?: string; icon?: React.ReactNode }) {
+function RippleLink({
+  href,
+  children,
+  className = "",
+  icon,
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+  icon?: React.ReactNode;
+}) {
   const ref = useRef<HTMLAnchorElement | null>(null);
   const addRipple = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const el = ref.current; if (!el) return;
+    const el = ref.current;
+    if (!el) return;
     const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     const ripple = document.createElement("span");
-    ripple.className = "ripple"; ripple.style.left = `${x}px`; ripple.style.top = `${y}px`;
-    el.appendChild(ripple); setTimeout(() => ripple.remove(), 600);
+    ripple.className = "ripple";
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    el.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
   };
   return (
-    <a ref={ref} href={href} target="_blank" rel="noreferrer" onMouseEnter={addRipple} onClick={addRipple} className={`btn-neon ${className}`}>
+    <a
+      ref={ref}
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      onMouseEnter={addRipple}
+      onClick={addRipple}
+      className={`btn-neon ${className}`}
+    >
       {icon} {children}
     </a>
   );
@@ -182,7 +256,9 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="relative z-10 py-24">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-5xl font-extrabold mb-10 text-gradient">Featured Projects</h2>
+        <h2 className="text-3xl md:text-5xl font-extrabold mb-10 text-gradient">
+          Featured Projects
+        </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {projects.map((p, idx) => (
             <motion.div
@@ -190,7 +266,12 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.4 }}
-              transition={{ delay: idx * 0.06, type: "spring", stiffness: 120, damping: 16 }}
+              transition={{
+                delay: idx * 0.06,
+                type: "spring",
+                stiffness: 120,
+                damping: 16,
+              }}
             >
               <ProjectCard project={p} onOpen={() => setActive(p)} />
             </motion.div>
@@ -216,19 +297,33 @@ export default function ProjectsSection() {
               <motion.div
                 aria-hidden
                 className="pointer-events-none absolute -inset-20 opacity-40"
-                initial={{ borderRadius: "40% 60% 60% 40% / 40% 40% 60% 60%", rotate: 0 }}
+                initial={{
+                  borderRadius: "40% 60% 60% 40% / 40% 40% 60% 60%",
+                  rotate: 0,
+                }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                style={{ background: "radial-gradient(600px 400px at 60% 50%, hsl(var(--neon)/.25), transparent 60%)" }}
+                style={{
+                  background:
+                    "radial-gradient(600px 400px at 60% 50%, hsl(var(--neon)/.25), transparent 60%)",
+                }}
               />
 
               <div className="relative">
                 <div className="flex items-start justify-between gap-4 mb-6">
                   <div>
-                    <h3 className="text-2xl md:text-4xl font-bold text-gradient">{active.title}</h3>
-                    <p className="mt-2 text-foreground/80 max-w-2xl">{active.description}</p>
+                    <h3 className="text-2xl md:text-4xl font-bold text-gradient">
+                      {active.title}
+                    </h3>
+                    <p className="mt-2 text-foreground/80 max-w-2xl">
+                      {active.description}
+                    </p>
                   </div>
-                  <button className="btn-neon px-3 py-2" onClick={() => setActive(null)} aria-label="Close">
+                  <button
+                    className="btn-neon px-3 py-2"
+                    onClick={() => setActive(null)}
+                    aria-label="Close"
+                  >
                     <X size={18} />
                   </button>
                 </div>
@@ -236,7 +331,12 @@ export default function ProjectsSection() {
                 <div className="grid md:grid-cols-2 gap-6 items-center">
                   <div className="relative aspect-video rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 overflow-hidden">
                     {active.image && (
-                      <img src={active.image} alt={active.imageAlt || active.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+                      <img
+                        src={active.image}
+                        alt={active.imageAlt || active.title}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
                     )}
                     <div className="absolute inset-0 opacity-70 bg-[radial-gradient(600px_300px_at_40%_20%,hsl(var(--neon)/.25),transparent_60%)]" />
                     <div className="absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_70%)]">
@@ -246,7 +346,9 @@ export default function ProjectsSection() {
                   <div>
                     {active.features && (
                       <>
-                        <h4 className="font-semibold text-lg mb-2">Highlights</h4>
+                        <h4 className="font-semibold text-lg mb-2">
+                          Highlights
+                        </h4>
                         <ul className="list-disc list-inside space-y-1 text-foreground/80">
                           {active.features.map((f, i) => (
                             <li key={i}>{f}</li>
@@ -256,12 +358,27 @@ export default function ProjectsSection() {
                     )}
                     <div className="mt-6 flex flex-wrap gap-3">
                       {active.tags.map((t) => (
-                        <span key={t} className="px-3 py-1 rounded-full text-xs border border-white/20 bg-white/5">{t}</span>
+                        <span
+                          key={t}
+                          className="px-3 py-1 rounded-full text-xs border border-white/20 bg-white/5"
+                        >
+                          {t}
+                        </span>
                       ))}
                     </div>
                     <div className="mt-6 flex gap-3">
-                      <RippleLink href={active.link || "#"} icon={<ExternalLink size={16} className="mr-2" />}>Live Demo</RippleLink>
-                      <RippleLink href={active.repo || "#"} icon={<Github size={16} className="mr-2" />}>GitHub Repo</RippleLink>
+                      <RippleLink
+                        href={active.link || "#"}
+                        icon={<ExternalLink size={16} className="mr-2" />}
+                      >
+                        Live Demo
+                      </RippleLink>
+                      <RippleLink
+                        href={active.repo || "#"}
+                        icon={<Github size={16} className="mr-2" />}
+                      >
+                        GitHub Repo
+                      </RippleLink>
                     </div>
                   </div>
                 </div>
@@ -276,15 +393,21 @@ export default function ProjectsSection() {
 
 function ProjectCard({ project }: { project: Project }) {
   const { ref, onMouseMove, onLeave } = useTilt();
-  const gradient = useMemo(() => `linear-gradient(135deg, hsl(var(--neon) / 0.20), transparent)`, []);
+  const gradient = useMemo(
+    () => `linear-gradient(135deg, hsl(var(--neon) / 0.20), transparent)`,
+    [],
+  );
   return (
-    <motion.div layoutId={project.id} className="tilt-3d group cursor-pointer select-none relative">
+    <motion.div
+      layoutId={project.id}
+      className="tilt-3d group cursor-pointer select-none relative"
+    >
       {/* Particle aura */}
       <div className="absolute -inset-2 rounded-3xl pointer-events-none opacity-60">
         <ParticleAura className="absolute inset-0" />
       </div>
       <a
-        href={project.link || '#'}
+        href={project.link || "#"}
         target="_blank"
         rel="noreferrer"
         ref={ref as any}
@@ -296,7 +419,12 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="absolute -inset-20 opacity-25 bg-[radial-gradient(500px_300px_at_20%_0%,hsl(var(--neon)/.35),transparent_60%)]" />
         <div className="relative aspect-video rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 group-hover:glow transition-shadow overflow-hidden">
           {project.image && (
-            <img src={project.image} alt={project.imageAlt || project.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+            <img
+              src={project.image}
+              alt={project.imageAlt || project.title}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
           )}
           <div className="absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_70%)]">
             <ParticleAura className="absolute inset-0" />
@@ -304,11 +432,18 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
         <div className="relative mt-4">
           <h3 className="text-lg font-bold">{project.title}</h3>
-          <p className="mt-1 text-sm text-foreground/70">{project.description}</p>
+          <p className="mt-1 text-sm text-foreground/70">
+            {project.description}
+          </p>
         </div>
         <div className="relative mt-3 flex flex-wrap gap-2">
           {project.tags.map((t) => (
-            <span key={t} className="px-2 py-0.5 rounded-full text-[11px] border border-white/20 bg-white/5">{t}</span>
+            <span
+              key={t}
+              className="px-2 py-0.5 rounded-full text-[11px] border border-white/20 bg-white/5"
+            >
+              {t}
+            </span>
           ))}
         </div>
       </a>

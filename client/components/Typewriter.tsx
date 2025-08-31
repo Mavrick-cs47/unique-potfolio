@@ -6,7 +6,11 @@ interface Props {
   pause?: number; // ms between phrases
 }
 
-export default function Typewriter({ phrases, typingSpeed = 40, pause = 1200 }: Props) {
+export default function Typewriter({
+  phrases,
+  typingSpeed = 40,
+  pause = 1200,
+}: Props) {
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);

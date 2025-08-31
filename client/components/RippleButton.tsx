@@ -4,7 +4,13 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export default function RippleButton({ children, className = "", onMouseEnter, onClick, ...rest }: Props) {
+export default function RippleButton({
+  children,
+  className = "",
+  onMouseEnter,
+  onClick,
+  ...rest
+}: Props) {
   const ref = useRef<HTMLButtonElement | null>(null);
 
   const addRipple = (e: MouseEvent<HTMLButtonElement>) => {
@@ -25,8 +31,14 @@ export default function RippleButton({ children, className = "", onMouseEnter, o
     <button
       ref={ref}
       {...rest}
-      onMouseEnter={(e) => { addRipple(e); onMouseEnter?.(e); }}
-      onClick={(e) => { addRipple(e); onClick?.(e); }}
+      onMouseEnter={(e) => {
+        addRipple(e);
+        onMouseEnter?.(e);
+      }}
+      onClick={(e) => {
+        addRipple(e);
+        onClick?.(e);
+      }}
       className={`btn-neon ${className}`}
     >
       {children}

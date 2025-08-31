@@ -28,7 +28,10 @@ export default function RadarSkills({ skills }: Props) {
     });
   }, [skills]);
 
-  const polygonPath = useMemo(() => points.map((p) => `${p.x},${p.y}`).join(" "), [points]);
+  const polygonPath = useMemo(
+    () => points.map((p) => `${p.x},${p.y}`).join(" "),
+    [points],
+  );
 
   const grid = useMemo(() => {
     const layers = 5;
@@ -52,43 +55,78 @@ export default function RadarSkills({ skills }: Props) {
   return (
     <div className="relative w-full max-w-[360px]">
       <svg viewBox="0 0 320 320" className="w-full h-auto">
-        <motion.g animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }}>
-        {/* grid rings */}
-        {grid.map((g, idx) => (
-          <polygon key={idx} points={g} fill="none" stroke="hsl(var(--border))" strokeOpacity={0.3} />
-        ))}
-        {/* axes */}
-        {skills.map((_, i) => {
-          const cx = 160; const cy = 160; const r = 120; const step = (Math.PI * 2) / skills.length; const angle = i * step - Math.PI / 2;
-          return <line key={`axis-${i}`} x1={cx} y1={cy} x2={cx + Math.cos(angle) * r} y2={cy + Math.sin(angle) * r} stroke="hsl(var(--border))" strokeOpacity={0.3} />;
-        })}
-        {/* polygon */}
-        <motion.polygon
-          points={polygonPath}
-          fill={`hsl(var(--neon) / 0.18)`}
-          stroke={`hsl(var(--neon))`}
-          strokeWidth={2}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="neon-border"
-        />
-        {/* nodes */}
-        {points.map((p, i) => (
-          <g key={`node-${i}`} onMouseEnter={() => setHoverIndex(i)} onMouseLeave={() => setHoverIndex((v) => (v === i ? null : v))}>
-            <motion.circle cx={p.x} cy={p.y} r={hoverIndex === i ? 7 : 5} fill={`hsl(var(--neon))`} filter="url(#glow)" animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2, repeat: Infinity }} />
-            <motion.text
-              x={p.x}
-              y={p.y - 10}
-              textAnchor="middle"
-              className="text-xs fill-foreground"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: hoverIndex === i ? 1 : 0 }}
+        <motion.g
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        >
+          {/* grid rings */}
+          {grid.map((g, idx) => (
+            <polygon
+              key={idx}
+              points={g}
+              fill="none"
+              stroke="hsl(var(--border))"
+              strokeOpacity={0.3}
+            />
+          ))}
+          {/* axes */}
+          {skills.map((_, i) => {
+            const cx = 160;
+            const cy = 160;
+            const r = 120;
+            const step = (Math.PI * 2) / skills.length;
+            const angle = i * step - Math.PI / 2;
+            return (
+              <line
+                key={`axis-${i}`}
+                x1={cx}
+                y1={cy}
+                x2={cx + Math.cos(angle) * r}
+                y2={cy + Math.sin(angle) * r}
+                stroke="hsl(var(--border))"
+                strokeOpacity={0.3}
+              />
+            );
+          })}
+          {/* polygon */}
+          <motion.polygon
+            points={polygonPath}
+            fill={`hsl(var(--neon) / 0.18)`}
+            stroke={`hsl(var(--neon))`}
+            strokeWidth={2}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="neon-border"
+          />
+          {/* nodes */}
+          {points.map((p, i) => (
+            <g
+              key={`node-${i}`}
+              onMouseEnter={() => setHoverIndex(i)}
+              onMouseLeave={() => setHoverIndex((v) => (v === i ? null : v))}
             >
-              {skills[i].name}
-            </motion.text>
-          </g>
-        ))}
+              <motion.circle
+                cx={p.x}
+                cy={p.y}
+                r={hoverIndex === i ? 7 : 5}
+                fill={`hsl(var(--neon))`}
+                filter="url(#glow)"
+                animate={{ scale: [1, 1.15, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <motion.text
+                x={p.x}
+                y={p.y - 10}
+                textAnchor="middle"
+                className="text-xs fill-foreground"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: hoverIndex === i ? 1 : 0 }}
+              >
+                {skills[i].name}
+              </motion.text>
+            </g>
+          ))}
         </motion.g>
         <defs>
           <filter id="glow">

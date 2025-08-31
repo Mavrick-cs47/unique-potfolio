@@ -11,7 +11,10 @@ export default function MarqueeAchievements() {
     <div className="marquee py-6 glass">
       <div className="marquee-track flex items-center gap-10 px-6 text-sm md:text-base">
         {items.concat(items).map((it, i) => (
-          <span key={i} className="px-4 py-2 rounded-full border border-white/20 bg-white/5">
+          <span
+            key={i}
+            className="px-4 py-2 rounded-full border border-white/20 bg-white/5"
+          >
             {it}
           </span>
         ))}

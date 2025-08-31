@@ -27,10 +27,14 @@ export default function Index() {
         if (data && data.city) city = data.city;
       } catch {}
       const now = new Date();
-      const time = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' }).format(now);
+      const time = new Intl.DateTimeFormat(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(now);
       // Prefer sonner if available
-      const el = document.createElement('div');
-      el.className = 'fixed bottom-4 left-1/2 -translate-x-1/2 z-50 glass neon-border px-5 py-3 rounded-2xl';
+      const el = document.createElement("div");
+      el.className =
+        "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 glass neon-border px-5 py-3 rounded-2xl";
       el.textContent = `Hey ${city}, thanks for visiting at ${time}. Remember my name: Chirag Sharma 🚀`;
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 8000);
@@ -54,14 +58,19 @@ export default function Index() {
       root.style.setProperty("--grad-3", c);
     };
 
-    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-section]"));
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-section]"),
+    );
     const obs = new IntersectionObserver(
       (entries) => {
         const topMost = entries
           .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          )[0];
         if (topMost) {
-          const key = (topMost.target.getAttribute("data-section") || "hero") as keyof typeof colors;
+          const key = (topMost.target.getAttribute("data-section") ||
+            "hero") as keyof typeof colors;
           setGradient(key);
         }
       },
@@ -72,8 +81,11 @@ export default function Index() {
     const onMood = (e: any) => {
       if (e.detail?.tagline) setPhrases([e.detail.tagline]);
     };
-    window.addEventListener('mood-change', onMood as any);
-    return () => { obs.disconnect(); window.removeEventListener('mood-change', onMood as any); };
+    window.addEventListener("mood-change", onMood as any);
+    return () => {
+      obs.disconnect();
+      window.removeEventListener("mood-change", onMood as any);
+    };
   }, []);
 
   const { scrollY } = useScroll();
@@ -84,7 +96,10 @@ export default function Index() {
       <HRMode />
       <ChiragBot />
       {/* Hero */}
-      <section data-section="hero" className="relative min-h-[92svh] flex items-center overflow-hidden">
+      <section
+        data-section="hero"
+        className="relative min-h-[92svh] flex items-center overflow-hidden"
+      >
         <div className="absolute inset-0">
           <ThreeBlob />
         </div>
@@ -95,25 +110,62 @@ export default function Index() {
               <span className="text-gradient">Chirag Sharma 🚀</span>
             </h1>
             <p className="text-lg md:text-xl text-foreground/80 transition-colors duration-500">
-              <Typewriter
-                phrases={phrases}
-                typingSpeed={28}
-                pause={1600}
-              />
+              <Typewriter phrases={phrases} typingSpeed={28} pause={1600} />
             </p>
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <RippleButton onClick={() => { document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }); }}>View My Work</RippleButton>
-              <RippleButton onClick={() => { document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}>Get in Touch</RippleButton>
+              <RippleButton
+                onClick={() => {
+                  document
+                    .querySelector("#projects")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                View My Work
+              </RippleButton>
+              <RippleButton
+                onClick={() => {
+                  document
+                    .querySelector("#contact")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                Get in Touch
+              </RippleButton>
               <div className="flex items-center gap-3 ml-2">
-                <a className="glass p-2 rounded-xl hover:glow" href="https://github.com/" aria-label="GitHub" target="_blank" rel="noreferrer"><Github /></a>
-                <a className="glass p-2 rounded-xl hover:glow" href="https://linkedin.com/" aria-label="LinkedIn" target="_blank" rel="noreferrer"><Linkedin /></a>
-                <a className="glass p-2 rounded-xl hover:glow" href="#contact" aria-label="Email"><Mail /></a>
+                <a
+                  className="glass p-2 rounded-xl hover:glow"
+                  href="https://github.com/"
+                  aria-label="GitHub"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Github />
+                </a>
+                <a
+                  className="glass p-2 rounded-xl hover:glow"
+                  href="https://linkedin.com/"
+                  aria-label="LinkedIn"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Linkedin />
+                </a>
+                <a
+                  className="glass p-2 rounded-xl hover:glow"
+                  href="#contact"
+                  aria-label="Email"
+                >
+                  <Mail />
+                </a>
               </div>
             </div>
           </motion.div>
           <div className="relative h-[300px] md:h-auto md:min-h-[480px] max-w-[520px] w-full justify-self-end">
             <div className="absolute -inset-12 z-0 blur-3xl opacity-50 bg-[radial-gradient(circle_at_center,hsl(var(--neon)/.4),transparent_60%)]" />
-            <HeroPortrait src="https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2Fc15e437f559148e987665b8f73a9ce2a?format=webp&width=800" alt="Chirag Sharma" />
+            <HeroPortrait
+              src="https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2Fc15e437f559148e987665b8f73a9ce2a?format=webp&width=800"
+              alt="Chirag Sharma"
+            />
           </div>
         </div>
       </section>
@@ -121,23 +173,30 @@ export default function Index() {
       {/* About */}
       <section data-section="about" id="about" className="relative py-24">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-10 text-gradient">About Me</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-10 text-gradient">
+            About Me
+          </h2>
           <div className="grid md:grid-cols-2 gap-10">
             {/* Timeline */}
             <div className="space-y-8">
-              {[{
-                title: "B.Tech in Computer Science",
-                period: "2022 — Present",
-                detail: "Exploring AI, systems, and human-centered design.",
-              }, {
-                title: "AI & Web Projects",
-                period: "2023 — Present",
-                detail: "Building assistants, 3D experiences, and developer tools.",
-              }, {
-                title: "Open Source",
-                period: "Ongoing",
-                detail: "Contributing to libraries and sharing learning.",
-              }].map((item, i) => (
+              {[
+                {
+                  title: "B.Tech in Computer Science",
+                  period: "2022 — Present",
+                  detail: "Exploring AI, systems, and human-centered design.",
+                },
+                {
+                  title: "AI & Web Projects",
+                  period: "2023 — Present",
+                  detail:
+                    "Building assistants, 3D experiences, and developer tools.",
+                },
+                {
+                  title: "Open Source",
+                  period: "Ongoing",
+                  detail: "Contributing to libraries and sharing learning.",
+                },
+              ].map((item, i) => (
                 <motion.div
                   key={item.title}
                   initial={{ opacity: 0, x: -20 }}
@@ -157,8 +216,14 @@ export default function Index() {
             {/* Fun facts hover cards */}
             <div className="grid sm:grid-cols-2 gap-6">
               {[
-                { title: "Design Lover", text: "Minimalism with a sci‑fi twist." },
-                { title: "24/7 Curious", text: "Always tinkering with new stacks." },
+                {
+                  title: "Design Lover",
+                  text: "Minimalism with a sci‑fi twist.",
+                },
+                {
+                  title: "24/7 Curious",
+                  text: "Always tinkering with new stacks.",
+                },
                 { title: "Team Player", text: "Lead by empathy and clarity." },
                 { title: "Runner", text: "Code sprints and real ones." },
               ].map((f, i) => (
@@ -204,35 +269,71 @@ export default function Index() {
       {/* Contact */}
       <section data-section="contact" id="contact" className="relative py-24">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-gradient">Let’s build something amazing</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-gradient">
+            Let’s build something amazing
+          </h2>
           <div className="grid md:grid-cols-2 gap-10">
             <form
               className="glass neon-border p-6 md:p-8 rounded-2xl space-y-4"
-              onSubmit={(e) => { e.preventDefault(); alert('Thanks for reaching out!'); }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                alert("Thanks for reaching out!");
+              }}
             >
               <div>
                 <label className="text-sm opacity-80">Name</label>
-                <input required className="w-full mt-1 px-4 py-3 rounded-xl bg-white/5 border border-white/20 outline-none focus:ring-2 focus:ring-[hsl(var(--neon))]" />
+                <input
+                  required
+                  className="w-full mt-1 px-4 py-3 rounded-xl bg-white/5 border border-white/20 outline-none focus:ring-2 focus:ring-[hsl(var(--neon))]"
+                />
               </div>
               <div>
                 <label className="text-sm opacity-80">Email</label>
-                <input type="email" required className="w-full mt-1 px-4 py-3 rounded-xl bg-white/5 border border-white/20 outline-none focus:ring-2 focus:ring-[hsl(var(--neon))]" />
+                <input
+                  type="email"
+                  required
+                  className="w-full mt-1 px-4 py-3 rounded-xl bg-white/5 border border-white/20 outline-none focus:ring-2 focus:ring-[hsl(var(--neon))]"
+                />
               </div>
               <div>
                 <label className="text-sm opacity-80">Message</label>
-                <textarea required rows={5} className="w-full mt-1 px-4 py-3 rounded-xl bg-white/5 border border-white/20 outline-none focus:ring-2 focus:ring-[hsl(var(--neon))]"></textarea>
+                <textarea
+                  required
+                  rows={5}
+                  className="w-full mt-1 px-4 py-3 rounded-xl bg-white/5 border border-white/20 outline-none focus:ring-2 focus:ring-[hsl(var(--neon))]"
+                ></textarea>
               </div>
               <RippleButton className="w-full">Send Message</RippleButton>
-              <p className="text-xs text-foreground/60">Press "C" anytime to toggle neon cyberpunk mode ⚡</p>
+              <p className="text-xs text-foreground/60">
+                Press "C" anytime to toggle neon cyberpunk mode ⚡
+              </p>
             </form>
             <div className="space-y-6">
               <div className="glass neon-border p-6 rounded-2xl">
                 <h3 className="font-semibold text-lg mb-2">Let’s connect</h3>
-                <p className="text-foreground/80">Open to internships, collaborations, and exciting projects.</p>
+                <p className="text-foreground/80">
+                  Open to internships, collaborations, and exciting projects.
+                </p>
                 <div className="mt-4 flex gap-3">
-                  <a className="btn-neon" href="mailto:hello@example.com"><Mail size={16} className="mr-2"/> Email</a>
-                  <a className="btn-neon" href="https://github.com/" target="_blank" rel="noreferrer"><Github size={16} className="mr-2"/> GitHub</a>
-                  <a className="btn-neon" href="https://linkedin.com/" target="_blank" rel="noreferrer"><Linkedin size={16} className="mr-2"/> LinkedIn</a>
+                  <a className="btn-neon" href="mailto:hello@example.com">
+                    <Mail size={16} className="mr-2" /> Email
+                  </a>
+                  <a
+                    className="btn-neon"
+                    href="https://github.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Github size={16} className="mr-2" /> GitHub
+                  </a>
+                  <a
+                    className="btn-neon"
+                    href="https://linkedin.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Linkedin size={16} className="mr-2" /> LinkedIn
+                  </a>
                 </div>
               </div>
               <div className="glass neon-border p-6 rounded-2xl">
@@ -253,11 +354,20 @@ export default function Index() {
         <div className="container mx-auto px-6">
           <div className="futuristic-line mb-6" />
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-foreground/70">© {new Date().getFullYear()} Chirag Sharma. Built with love and neon.</p>
+            <p className="text-sm text-foreground/70">
+              © {new Date().getFullYear()} Chirag Sharma. Built with love and
+              neon.
+            </p>
             <div className="flex gap-4">
-              <a className="text-sm hover:underline" href="#projects">Projects</a>
-              <a className="text-sm hover:underline" href="#skills">Skills</a>
-              <a className="text-sm hover:underline" href="#contact">Contact</a>
+              <a className="text-sm hover:underline" href="#projects">
+                Projects
+              </a>
+              <a className="text-sm hover:underline" href="#skills">
+                Skills
+              </a>
+              <a className="text-sm hover:underline" href="#contact">
+                Contact
+              </a>
             </div>
           </div>
         </div>
