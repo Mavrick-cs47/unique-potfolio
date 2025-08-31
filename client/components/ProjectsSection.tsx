@@ -129,7 +129,7 @@ export default function ProjectsSection() {
 
 function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
   const { ref, onMouseMove, onLeave } = useTilt();
-  const gradient = useMemo(() => `linear-gradient(135deg, hsla(var(--neon),0.25), transparent)`, []);
+  const gradient = useMemo(() => `linear-gradient(135deg, hsl(var(--neon) / 0.25), transparent)`, []);
   return (
     <motion.div
       layoutId={project.id}
