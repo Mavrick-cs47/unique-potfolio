@@ -33,12 +33,14 @@ export default function HeroPortrait({
     img.src = src;
   }, [src]);
 
-  const onMove = (e: React.MouseEvent) => {
+  const onMove = (e: React.MouseEvent | React.TouchEvent) => {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
+    const clientX = 'touches' in e ? e.touches[0].clientX : (e as any).clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : (e as any).clientY;
+    const px = (clientX - rect.left) / rect.width;
+    const py = (clientY - rect.top) / rect.height;
     rx.set((py - 0.5) * -12);
     ry.set((px - 0.5) * 12);
   };
@@ -46,6 +48,20 @@ export default function HeroPortrait({
     rx.set(0);
     ry.set(0);
   };
+
+  useEffect(() => {
+    const coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    if (!coarse) return;
+    let raf = 0; const start = performance.now();
+    const loop = (t: number) => {
+      const dt = (t - start) / 1000;
+      rx.set(Math.sin(dt) * 4);
+      ry.set(Math.cos(dt * 0.9) * 4);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [rx, ry]);
 
   return (
     <motion.div
