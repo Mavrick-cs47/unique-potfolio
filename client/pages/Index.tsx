@@ -100,12 +100,9 @@ export default function Index() {
               <span className="block">Hi, I’m</span>
               <span className="text-gradient">Chirag Sharma 🚀</span>
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80">
+            <p className="text-lg md:text-xl text-foreground/80 transition-colors duration-500">
               <Typewriter
-                phrases={[
-                  "B.Tech Student | AI & Web Enthusiast | Future Tech Innovator",
-                  "Turning ideas into impactful digital experiences.",
-                ]}
+                phrases={phrases}
                 typingSpeed={28}
                 pause={1600}
               />
