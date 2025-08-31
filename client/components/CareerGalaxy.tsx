@@ -19,7 +19,7 @@ function Stars({ onHover }: { onHover: (m: Milestone | null, p: THREE.Vector3 | 
   const [scales] = useState<number[]>(() => new Array(milestones.length).fill(1));
 
   // Initialize instance transforms and colors after mesh ref is set
-  React.useEffect(() => {
+  useEffect(() => {
     if (!mesh.current) return;
     for (let i = 0; i < milestones.length; i++) {
       const m = milestones[i];
