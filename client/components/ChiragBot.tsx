@@ -24,7 +24,7 @@ export default function ChiragBot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-24 z-40">
+    <div className="fixed bottom-24 right-6 z-40">
       {open && (
         <div className="glass neon-border w-[320px] h-[380px] rounded-2xl p-4 flex flex-col">
           <div className="font-semibold mb-2">ChiragBot</div>
