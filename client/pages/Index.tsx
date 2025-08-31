@@ -70,7 +70,11 @@ export default function Index() {
     );
     sections.forEach((el) => obs.observe(el));
     setGradient("hero");
-    return () => obs.disconnect();
+    const onMood = (e: any) => {
+      if (e.detail?.tagline) setPhrases([e.detail.tagline]);
+    };
+    window.addEventListener('mood-change', onMood as any);
+    return () => { obs.disconnect(); window.removeEventListener('mood-change', onMood as any); };
   }, []);
 
   const { scrollY } = useScroll();
