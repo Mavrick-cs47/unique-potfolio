@@ -14,6 +14,10 @@ import ChiragBot from "@/components/ChiragBot";
 import { Github, Linkedin, Mail, Sparkles } from "lucide-react";
 
 export default function Index() {
+  const [phrases, setPhrases] = useState<string[]>([
+    "B.Tech Student | AI & Web Enthusiast | Future Tech Innovator",
+    "Turning ideas into impactful digital experiences.",
+  ]);
   // Background gradient morphs by section
   useEffect(() => {
     const timer = window.setTimeout(async () => {
