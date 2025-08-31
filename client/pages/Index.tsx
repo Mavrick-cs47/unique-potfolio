@@ -202,7 +202,7 @@ export default function Index() {
               ))}
             </ul>
           </div>
-          <div className="justify-self-center">
+          <div className="justify-self-center flex flex-col items-center gap-8 w-full">
             <RadarSkills skills={[
               { name: 'TS', value: 92 },
               { name: 'React', value: 90 },
@@ -211,10 +211,10 @@ export default function Index() {
               { name: 'Design', value: 75 },
               { name: 'AI', value: 78 },
             ]} />
+            <div className="w-full max-w-xl">
+              <SkillsShowcase />
+            </div>
           </div>
-        </div>
-        <div className="mt-10">
-          <SkillsShowcase />
         </div>
       </section>
 
