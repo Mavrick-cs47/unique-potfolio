@@ -1,4 +1,4 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Suspense, useMemo, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 
