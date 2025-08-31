@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   phrases: string[];
@@ -10,40 +10,30 @@ export default function Typewriter({ phrases, typingSpeed = 40, pause = 1200 }: 
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
-  const timer = useRef<number | null>(null);
 
   useEffect(() => {
     const current = phrases[index % phrases.length];
-    const step = () => {
-      setText((prev) => {
-        if (!deleting) {
-          const next = current.slice(0, prev.length + 1);
-          if (next === current) {
-            setDeleting(true);
-            window.setTimeout(() => step(), pause);
-          }
-          return next;
-        } else {
-          const next = current.slice(0, prev.length - 1);
-          if (next.length === 0) {
-            setDeleting(false);
-            setIndex((i) => (i + 1) % phrases.length);
-          }
-          return next;
+    const atEnd = text === current;
+    const atStart = text.length === 0;
+
+    let delay = deleting ? typingSpeed / 2 : typingSpeed;
+    if (atEnd && !deleting) delay = pause; // pause at full word
+
+    const id = window.setTimeout(() => {
+      if (!deleting) {
+        if (!atEnd) setText(current.slice(0, text.length + 1));
+        else setDeleting(true);
+      } else {
+        if (!atStart) setText(current.slice(0, text.length - 1));
+        else {
+          setDeleting(false);
+          setIndex((i) => (i + 1) % phrases.length);
         }
-      });
-    };
+      }
+    }, delay);
 
-    timer.current = window.setTimeout(step, deleting ? typingSpeed / 2 : typingSpeed);
-    return () => { if (timer.current) window.clearTimeout(timer.current); };
-  }, [deleting, index, phrases, typingSpeed, pause]);
-
-  useEffect(() => {
-    if (text === phrases[index % phrases.length]) {
-      const id = window.setTimeout(() => setDeleting(true), pause);
-      return () => window.clearTimeout(id);
-    }
-  }, [text, index, phrases, pause]);
+    return () => window.clearTimeout(id);
+  }, [text, deleting, index, phrases, typingSpeed, pause]);
 
   return (
     <span className="inline-flex items-center">
