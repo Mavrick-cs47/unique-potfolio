@@ -117,7 +117,7 @@ export default function Index() {
           </motion.div>
           <div className="relative h-[320px] md:h-auto md:min-h-[520px]">
             <div className="absolute -inset-12 z-0 blur-3xl opacity-50 bg-[radial-gradient(circle_at_center,hsl(var(--neon)/.4),transparent_60%)]" />
-            <HeroPortrait src="/profile.jpg" alt="Chirag Sharma" />
+            <HeroPortrait src="https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2Fc15e437f559148e987665b8f73a9ce2a?format=webp&width=800" alt="Chirag Sharma" />
           </div>
         </div>
       </section>
