@@ -5,12 +5,12 @@ import * as THREE from "three";
 export type Milestone = { id: string; title: string; subtitle: string; year?: string; description?: string; color?: string; radius?: number; speed?: number; textureUrl?: string; size?: number };
 
 const tex = {
-  earth: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg",
-  mars: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mars_1k_color.jpg",
-  jupiter: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/jupiter.jpg",
-  venus: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/venus.jpg",
-  mercury: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mercury.jpg",
-  neptune: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/neptune.jpg",
+  earth: "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg",
+  mars: "https://threejs.org/examples/textures/planets/mars_1k_color.jpg",
+  jupiter: "https://threejs.org/examples/textures/planets/jupiter.jpg",
+  venus: "https://threejs.org/examples/textures/planets/venus.jpg",
+  mercury: "https://threejs.org/examples/textures/planets/mercury.jpg",
+  neptune: "https://threejs.org/examples/textures/planets/neptune.jpg",
 };
 
 const milestones: Milestone[] = [
