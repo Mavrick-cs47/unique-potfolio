@@ -144,13 +144,13 @@ export default function CareerGalaxy() {
 
               {/* Trains */}
               {trainEdu && (
-                <circle cx={trainEdu.x} cy={trainEdu.y} r={6} fill={LINES.edu.color} opacity={0.95} />
+                <text x={trainEdu.x} y={trainEdu.y} textAnchor="middle" dominantBaseline="middle" fontSize={18}>🏍️</text>
               )}
               {trainProj && (
-                <circle cx={trainProj.x} cy={trainProj.y} r={6} fill={LINES.projects.color} opacity={0.95} />
+                <text x={trainProj.x} y={trainProj.y} textAnchor="middle" dominantBaseline="middle" fontSize={18}>🏍️</text>
               )}
               {trainEvt && (
-                <circle cx={trainEvt.x} cy={trainEvt.y} r={6} fill={LINES.events.color} opacity={0.95} />
+                <text x={trainEvt.x} y={trainEvt.y} textAnchor="middle" dominantBaseline="middle" fontSize={18}>🏍️</text>
               )}
 
               {/* Legend */}
