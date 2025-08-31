@@ -6,11 +6,33 @@ import ThreeBlob from "@/components/ThreeBlob";
 import ProjectsSection from "@/components/ProjectsSection";
 import RadarSkills from "@/components/RadarSkills";
 import MarqueeAchievements from "@/components/MarqueeAchievements";
+import HeroPortrait from "@/components/HeroPortrait";
+import CareerGalaxy from "@/components/CareerGalaxy";
+import HRMode from "@/components/HRMode";
+import EmotionTheme from "@/components/EmotionTheme";
+import ChiragBot from "@/components/ChiragBot";
 import { Github, Linkedin, Mail, Sparkles } from "lucide-react";
 
 export default function Index() {
   // Background gradient morphs by section
   useEffect(() => {
+    const timer = window.setTimeout(async () => {
+      let city = "there";
+      try {
+        const res = await fetch("https://ipapi.co/json");
+        const data = await res.json();
+        if (data && data.city) city = data.city;
+      } catch {}
+      const now = new Date();
+      const time = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' }).format(now);
+      // Prefer sonner if available
+      const el = document.createElement('div');
+      el.className = 'fixed bottom-4 left-1/2 -translate-x-1/2 z-50 glass neon-border px-5 py-3 rounded-2xl';
+      el.textContent = `Hey ${city}, thanks for visiting at ${time}. Remember my name: Chirag Sharma 🚀`;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 8000);
+    }, 60000);
+
     const colors: Record<string, [string, string, string]> = {
       hero: ["222 89% 52%", "280 87% 60%", "190 95% 55%"],
       about: ["200 100% 50%", "260 100% 64%", "178 100% 52%"],
@@ -50,6 +72,9 @@ export default function Index() {
 
   return (
     <main className="relative z-10">
+      <HRMode />
+      <EmotionTheme />
+      <ChiragBot />
       {/* Hero */}
       <section data-section="hero" className="relative min-h-[92svh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
@@ -87,9 +112,7 @@ export default function Index() {
           </motion.div>
           <div className="relative h-[320px] md:h-auto md:min-h-[520px]">
             <div className="absolute -inset-12 z-0 blur-3xl opacity-50 bg-[radial-gradient(circle_at_center,hsl(var(--neon)/.4),transparent_60%)]" />
-            <div className="relative z-10 h-full w-full rounded-[24px] glass neon-border overflow-hidden">
-              {/* 3D abstract shape in ThreeBlob overlays entire section; this is an extra glass frame */}
-            </div>
+            <HeroPortrait src="/profile.jpg" alt="Chirag Sharma" />
           </div>
         </div>
       </section>
@@ -154,6 +177,9 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* Career Journey Galaxy */}
+      <CareerGalaxy />
 
       {/* Projects Section */}
       <section data-section="projects" id="projects" className="relative">
