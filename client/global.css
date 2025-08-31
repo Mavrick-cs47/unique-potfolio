@@ -159,13 +159,16 @@
   .mood-cheerful { --grad-1: 24 100% 70%; --grad-2: 197 100% 72%; --grad-3: 156 100% 64%; --star-speed-1: 3s; --star-speed-2: 3.5s; --star-speed-3: 4s; }
   .mood-professional { --grad-1: 224 100% 10%; --grad-2: 262 90% 18%; --grad-3: 200 90% 16%; --star-speed-1: 7s; --star-speed-2: 8s; --star-speed-3: 9s; }
   .mood-surprised { --star-speed-1: 2s; --star-speed-2: 2.4s; --star-speed-3: 2.8s; }
+  .mood-happy { --grad-1: 140 70% 35%; --grad-2: 150 60% 40%; --grad-3: 160 70% 45%; --star-speed-1: 3s; --star-speed-2: 3.5s; --star-speed-3: 4s; }
+  .mood-angry { --grad-1: 0 85% 40%; --grad-2: 12 90% 45%; --grad-3: 350 80% 38%; --star-speed-1: 2.8s; --star-speed-2: 3.2s; --star-speed-3: 3.6s; }
+  .mood-sad { --grad-1: 30 25% 25%; --grad-2: 20 30% 30%; --grad-3: 15 35% 22%; --star-speed-1: 8s; --star-speed-2: 9s; --star-speed-3: 10s; }
 
   @keyframes cta-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
   @keyframes burst { 0% { filter: brightness(1); } 50% { filter: brightness(1.5) saturate(1.2); } 100% { filter: brightness(1); } }
 
-  .mood-cheerful .btn-neon { animation: cta-bounce 2.2s ease-in-out infinite; }
-  .mood-professional .btn-neon { animation: none; }
-  .mood-surprised .galaxy-bg { animation: burst 1.8s ease-out; }
+  .mood-cheerful .btn-neon, .mood-happy .btn-neon { animation: cta-bounce 2.2s ease-in-out infinite; }
+  .mood-professional .btn-neon, .mood-sad .btn-neon { animation: none; }
+  .mood-surprised .galaxy-bg, .mood-angry .galaxy-bg { animation: burst 1.8s ease-out; }
 
   .mood-cheerful canvas.pointer-events-none { opacity: 0.85 !important; }
   .mood-professional canvas.pointer-events-none { opacity: 0.45 !important; }
