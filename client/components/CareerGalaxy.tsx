@@ -151,6 +151,16 @@ export default function CareerGalaxy() {
         </div>
         <p className="text-foreground/80 mb-6">Hover stars → planets with orbits. Click to reveal details.</p>
         <div className="relative h-[460px] rounded-2xl glass neon-border overflow-hidden">
+          {/* CSS starfield and nebula background */}
+          <div className="absolute inset-0 -z-10">
+            <div className="galaxy-bg" />
+            <div className="galaxy-star-field">
+              <div className="galaxy-layer" />
+              <div className="galaxy-layer" />
+              <div className="galaxy-layer" />
+            </div>
+          </div>
+
           <Canvas camera={{ position: [0, 0.2, 4.2], fov: 60 }} dpr={[1, 2]}>
             <ambientLight intensity={0.8} />
             <directionalLight position={[5, 5, 5]} intensity={1.1} />
