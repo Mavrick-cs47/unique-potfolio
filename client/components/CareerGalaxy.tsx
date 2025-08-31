@@ -175,7 +175,7 @@ export default function CareerGalaxy() {
             </div>
           </div>
 
-          <Canvas camera={{ position: [0, 0.2, 4.2], fov: 60 }} dpr={[1, 2]}>
+          <Canvas camera={{ position: [0, 0.4, 5.2], fov: 60 }} dpr={[1, 2]}>
             <ambientLight intensity={0.8} />
             <directionalLight position={[5, 5, 5]} intensity={1.1} />
             <Suspense fallback={null}>
