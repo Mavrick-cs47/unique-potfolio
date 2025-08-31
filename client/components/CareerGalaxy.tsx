@@ -84,12 +84,13 @@ function Planet({ m, onSelect }: { m: Milestone; onSelect: (m: Milestone) => voi
   const ring = useRef<THREE.Mesh>(null!);
   const [hover, setHover] = useState(false);
   const angle0 = useMemo(() => Math.random() * Math.PI * 2, []);
+  const texture = useLoader(THREE.TextureLoader, m.textureUrl || "");
   useFrame(({ clock }) => {
     const t = clock.elapsedTime * (m.speed ?? 0.25) + angle0;
     const r = m.radius ?? 1.5;
     ref.current.position.set(Math.cos(t) * r, Math.sin(t * 0.9) * 0.25, Math.sin(t) * r);
     ref.current.rotation.y += 0.01;
-    const s = hover ? 1.3 : 1;
+    const s = hover ? 1.2 : 1;
     ref.current.scale.setScalar(THREE.MathUtils.lerp(ref.current.scale.x, s, 0.08));
     if (ring.current) ring.current.rotation.z += 0.01;
   });
@@ -101,12 +102,16 @@ function Planet({ m, onSelect }: { m: Milestone; onSelect: (m: Milestone) => voi
         onPointerOut={() => setHover(false)}
         onClick={(e) => { e.stopPropagation(); onSelect(m); }}
       >
-        <sphereGeometry args={[0.12, 24, 24]} />
-        <meshStandardMaterial color={m.color || '#67e8f9'} emissive={new THREE.Color(m.color || '#67e8f9')} emissiveIntensity={0.7} roughness={0.3} metalness={0.4} />
+        <sphereGeometry args={[m.size ?? 0.3, 32, 32]} />
+        {m.textureUrl ? (
+          <meshStandardMaterial map={texture} roughness={0.8} metalness={0.1} />
+        ) : (
+          <meshStandardMaterial color={m.color || '#67e8f9'} emissive={new THREE.Color(m.color || '#67e8f9')} emissiveIntensity={0.6} roughness={0.3} metalness={0.4} />
+        )}
       </mesh>
       {hover && (
         <mesh ref={ring} position={ref.current ? ref.current.position : undefined}>
-          <torusGeometry args={[0.18, 0.005, 8, 60]} />
+          <torusGeometry args={[ (m.size ?? 0.3) + 0.08, 0.006, 8, 60]} />
           <meshBasicMaterial color={m.color || '#67e8f9'} transparent opacity={0.8} />
         </mesh>
       )}
