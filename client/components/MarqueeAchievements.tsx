@@ -1,7 +1,6 @@
 export default function MarqueeAchievements() {
   const items = [
-    "Hackathon Winner",
-    "Dean's List",
+    "Hackathon Participator",
     "Top 1% LeetCode",
     "Open Source Contributor",
     "Published Research",
