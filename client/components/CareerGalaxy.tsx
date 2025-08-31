@@ -84,7 +84,12 @@ function Planet({ m, onSelect }: { m: Milestone; onSelect: (m: Milestone) => voi
   const ring = useRef<THREE.Mesh>(null!);
   const [hover, setHover] = useState(false);
   const angle0 = useMemo(() => Math.random() * Math.PI * 2, []);
-  const texture = useLoader(THREE.TextureLoader, m.textureUrl || "");
+  let texture: THREE.Texture | null = null;
+  try {
+    texture = useLoader(THREE.TextureLoader, m.textureUrl || "");
+  } catch (e) {
+    texture = null;
+  }
   useFrame(({ clock }) => {
     const t = clock.elapsedTime * (m.speed ?? 0.25) + angle0;
     const r = m.radius ?? 1.5;
