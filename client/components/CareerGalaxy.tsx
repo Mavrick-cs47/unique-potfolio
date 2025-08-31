@@ -15,10 +15,12 @@ function Stars({ onHover }: { onHover: (m: Milestone | null, p: THREE.Vector3 | 
   const mesh = useRef<THREE.InstancedMesh>(null!);
   const dummy = useMemo(() => new THREE.Object3D(), []);
   const color = new THREE.Color();
-  const { raycaster, pointer, camera, scene } = useThree();
+  const { raycaster, pointer, camera } = useThree();
   const [scales] = useState<number[]>(() => new Array(milestones.length).fill(1));
 
-  useMemo(() => {
+  // Initialize instance transforms and colors after mesh ref is set
+  React.useEffect(() => {
+    if (!mesh.current) return;
     for (let i = 0; i < milestones.length; i++) {
       const m = milestones[i];
       dummy.position.set(...m.position);
@@ -28,7 +30,8 @@ function Stars({ onHover }: { onHover: (m: Milestone | null, p: THREE.Vector3 | 
       mesh.current.setColorAt(i, color.set(m.color || "#67e8f9"));
     }
     mesh.current.instanceMatrix.needsUpdate = true;
-  }, [color, dummy]);
+    if ((mesh.current as any).instanceColor) (mesh.current as any).instanceColor.needsUpdate = true;
+  }, [dummy]);
 
   useFrame(({ clock }) => {
     for (let i = 0; i < milestones.length; i++) {
