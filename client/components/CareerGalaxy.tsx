@@ -77,11 +77,8 @@ export default function CareerGalaxy() {
             <directionalLight position={[5, 5, 5]} intensity={0.8} />
             <Suspense fallback={null}>
               <Stars
-                onHover={(m, p) => {
+                onHover={(m) => {
                   setActive(m);
-                  if (p) {
-                    const vec = new THREE.Vector3(p.x, p.y, p.z).project((window as any).__THREE_CAMERA__ || ({} as any));
-                  }
                 }}
               />
             </Suspense>
