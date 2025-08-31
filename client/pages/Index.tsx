@@ -212,6 +212,9 @@ export default function Index() {
             ]} />
           </div>
         </div>
+        <div className="mt-10">
+          <SkillsShowcase />
+        </div>
       </section>
 
       {/* Achievements */}
