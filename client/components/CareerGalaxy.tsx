@@ -108,7 +108,7 @@ function Planet({ m, onSelect }: { m: Milestone; onSelect: (m: Milestone) => voi
         onClick={(e) => { e.stopPropagation(); onSelect(m); }}
       >
         <sphereGeometry args={[m.size ?? 0.3, 32, 32]} />
-        {m.textureUrl ? (
+        {texture ? (
           <meshStandardMaterial map={texture} roughness={0.8} metalness={0.1} />
         ) : (
           <meshStandardMaterial color={m.color || '#67e8f9'} emissive={new THREE.Color(m.color || '#67e8f9')} emissiveIntensity={0.6} roughness={0.3} metalness={0.4} />
