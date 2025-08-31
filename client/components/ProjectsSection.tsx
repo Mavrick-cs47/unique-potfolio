@@ -21,7 +21,7 @@ const projects: Project[] = [
     title: "Hotel Booking Website 🏨",
     description: "MERN app with auth, room search & booking, and payments. Minimal, professional booking UI.",
     tags: ["MongoDB", "Express", "React", "Node.js", "Payments"],
-    link: "#",
+    link: "https://stayeasecs47.netlify.app/",
     repo: "#",
     image: "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2Fc1b75292535b4951ad19acdee978113f?format=webp&width=800",
     imageAlt: "Hotel booking website UI",
@@ -36,7 +36,7 @@ const projects: Project[] = [
     title: "AI SkinDoctor 🤖🩺",
     description: "AI/ML-powered skin diagnosis with image analysis and instant predictions.",
     tags: ["AI/ML", "Python", "OpenCV", "Web"],
-    link: "#",
+    link: "https://skindoc-f19d27.netlify.app/",
     repo: "#",
     image: "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F4419066ca13144c788fa7a14ef32aa46?format=webp&width=800",
     imageAlt: "SkinScope analysis UI",
@@ -51,7 +51,7 @@ const projects: Project[] = [
     title: "Invisible Magic T‑Shirt 🧙‍♂️👕",
     description: "AR-style web experience simulating invisibility with playful animations.",
     tags: ["Web", "Animations", "AR‑style"],
-    link: "#",
+    link: "https://invisiblecscloak.netlify.app/",
     repo: "#",
     image: "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F20dcab1e1d8b4182831780188d1a810c?format=webp&width=800",
     imageAlt: "Invisibility T-shirt demo UI",
@@ -64,7 +64,7 @@ const projects: Project[] = [
 ];
 
 function useTilt() {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLElement | null>(null);
   const onMouseMove = useCallback((e: React.MouseEvent) => {
     const el = ref.current;
     if (!el) return;
@@ -274,20 +274,23 @@ export default function ProjectsSection() {
   );
 }
 
-function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
+function ProjectCard({ project }: { project: Project }) {
   const { ref, onMouseMove, onLeave } = useTilt();
   const gradient = useMemo(() => `linear-gradient(135deg, hsl(var(--neon) / 0.20), transparent)`, []);
   return (
-    <motion.div layoutId={project.id} onClick={onOpen} className="tilt-3d group cursor-pointer select-none relative">
+    <motion.div layoutId={project.id} className="tilt-3d group cursor-pointer select-none relative">
       {/* Particle aura */}
       <div className="absolute -inset-2 rounded-3xl pointer-events-none opacity-60">
         <ParticleAura className="absolute inset-0" />
       </div>
-      <div
-        ref={ref}
+      <a
+        href={project.link || '#'}
+        target="_blank"
+        rel="noreferrer"
+        ref={ref as any}
         onMouseMove={onMouseMove}
         onMouseLeave={onLeave}
-        className="relative glass neon-border p-5 rounded-2xl transition-transform will-change-transform overflow-hidden"
+        className="block relative glass neon-border p-5 rounded-2xl transition-transform will-change-transform overflow-hidden"
         style={{ backgroundImage: gradient }}
       >
         <div className="absolute -inset-20 opacity-25 bg-[radial-gradient(500px_300px_at_20%_0%,hsl(var(--neon)/.35),transparent_60%)]" />
@@ -308,7 +311,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
             <span key={t} className="px-2 py-0.5 rounded-full text-[11px] border border-white/20 bg-white/5">{t}</span>
           ))}
         </div>
-      </div>
+      </a>
     </motion.div>
   );
 }
