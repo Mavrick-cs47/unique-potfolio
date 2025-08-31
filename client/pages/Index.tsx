@@ -156,7 +156,7 @@ export default function Index() {
       </section>
 
       {/* Projects Section */}
-      <section data-section="projects" className="relative">
+      <section data-section="projects" id="projects" className="relative">
         <ProjectsSection />
       </section>
 
