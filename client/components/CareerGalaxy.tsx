@@ -48,11 +48,13 @@ function Stars({ onHover }: { onHover: (m: Milestone | null, p: THREE.Vector3 | 
     // hover detection
     raycaster.setFromCamera(pointer, camera);
     const intersects: any[] = raycaster.intersectObject(mesh.current as any);
-    if (intersects.length > 0) {
+    if (intersects.length > 0 && mesh.current) {
       const idx = intersects[0].instanceId ?? 0;
       const m = milestones[idx];
       const p = new THREE.Vector3();
-      p.setFromMatrixPosition((mesh.current as any).getMatrixAt(idx, new THREE.Matrix4()));
+      const mat = new THREE.Matrix4();
+      mesh.current.getMatrixAt(idx, mat);
+      p.setFromMatrixPosition(mat);
       onHover(m, p);
     } else onHover(null, null);
   });
