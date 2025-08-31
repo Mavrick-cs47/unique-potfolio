@@ -4,7 +4,6 @@ import RippleButton from "@/components/RippleButton";
 import Typewriter from "@/components/Typewriter";
 import ThreeBlob from "@/components/ThreeBlob";
 import ProjectsSection from "@/components/ProjectsSection";
-import RadarSkills from "@/components/RadarSkills";
 import SkillsShowcase from "@/components/SkillsShowcase";
 import MarqueeAchievements from "@/components/MarqueeAchievements";
 import HeroPortrait from "@/components/HeroPortrait";
@@ -190,31 +189,8 @@ export default function Index() {
 
       {/* Skills */}
       <section data-section="skills" id="skills" className="relative py-24">
-        <div className="container mx-auto px-6 grid md:grid-cols-[1fr_auto] gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-gradient">Skills</h2>
-            <p className="text-foreground/80 max-w-xl">
-              Tools and technologies I use to craft immersive, performant, and delightful experiences.
-            </p>
-            <ul className="mt-6 grid grid-cols-2 gap-2 text-sm text-foreground/70 max-w-md">
-              {['TypeScript','React','Three.js','Node.js','Tailwind','Framer Motion','Vite','Postgres'].map((s) => (
-                <li key={s} className="px-3 py-1 rounded-full border border-white/20 bg-white/5">{s}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="justify-self-center flex flex-col items-center gap-8 w-full">
-            <RadarSkills skills={[
-              { name: 'TS', value: 92 },
-              { name: 'React', value: 90 },
-              { name: 'Three', value: 70 },
-              { name: 'Node', value: 80 },
-              { name: 'Design', value: 75 },
-              { name: 'AI', value: 78 },
-            ]} />
-            <div className="w-full max-w-xl">
-              <SkillsShowcase />
-            </div>
-          </div>
+        <div className="container mx-auto px-6">
+          <SkillsShowcase />
         </div>
       </section>
 
