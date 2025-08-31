@@ -90,10 +90,6 @@ export default function Index() {
         </div>
         <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-10 py-20">
           <motion.div style={{ y: yHero }} className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs border border-white/20">
-              <Sparkles size={16} className="text-gradient" />
-              <span>Hackathon Participator</span>
-            </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
               <span className="block">Hi, I’m</span>
               <span className="text-gradient">Chirag Sharma 🚀</span>
@@ -115,7 +111,7 @@ export default function Index() {
               </div>
             </div>
           </motion.div>
-          <div className="relative h-[320px] md:h-auto md:min-h-[520px]">
+          <div className="relative h-[300px] md:h-auto md:min-h-[480px] max-w-[520px] w-full justify-self-end">
             <div className="absolute -inset-12 z-0 blur-3xl opacity-50 bg-[radial-gradient(circle_at_center,hsl(var(--neon)/.4),transparent_60%)]" />
             <HeroPortrait src="https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2Fc15e437f559148e987665b8f73a9ce2a?format=webp&width=800" alt="Chirag Sharma" />
           </div>
