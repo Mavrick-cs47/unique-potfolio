@@ -9,7 +9,6 @@ import MarqueeAchievements from "@/components/MarqueeAchievements";
 import HeroPortrait from "@/components/HeroPortrait";
 import CareerGalaxy from "@/components/CareerGalaxy";
 import HRMode from "@/components/HRMode";
-import EmotionTheme from "@/components/EmotionTheme";
 import ChiragBot from "@/components/ChiragBot";
 import { Github, Linkedin, Mail, Sparkles } from "lucide-react";
 
@@ -83,7 +82,6 @@ export default function Index() {
   return (
     <main className="relative z-10">
       <HRMode />
-      <EmotionTheme />
       <ChiragBot />
       {/* Hero */}
       <section data-section="hero" className="relative min-h-[92svh] flex items-center overflow-hidden">
@@ -94,7 +92,7 @@ export default function Index() {
           <motion.div style={{ y: yHero }} className="space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs border border-white/20">
               <Sparkles size={16} className="text-gradient" />
-              <span>Futuristic Portfolio</span>
+              <span>Hackathon Participator</span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
               <span className="block">Hi, I’m</span>
