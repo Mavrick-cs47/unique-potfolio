@@ -135,6 +135,7 @@
       radial-gradient(1000px 700px at 100% 0%, hsl(var(--grad-2) / 0.18), transparent 60%),
       radial-gradient(800px 600px at -10% 80%, hsl(var(--grad-3) / 0.16), transparent 60%);
     background-attachment: fixed;
+    scroll-behavior: smooth;
   }
 
   h1,h2,h3,h4 { font-family: "Orbitron", "Outfit", system-ui, sans-serif; letter-spacing: 0.02em; }
