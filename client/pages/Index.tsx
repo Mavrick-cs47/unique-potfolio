@@ -76,8 +76,8 @@ export default function Index() {
               />
             </p>
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a href="#projects" className="btn-neon">View My Work</a>
-              <a href="#contact" className="btn-neon">Get in Touch</a>
+              <RippleButton onClick={() => { document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }); }}>View My Work</RippleButton>
+              <RippleButton onClick={() => { document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}>Get in Touch</RippleButton>
               <div className="flex items-center gap-3 ml-2">
                 <a className="glass p-2 rounded-xl hover:glow" href="https://github.com/" aria-label="GitHub" target="_blank" rel="noreferrer"><Github /></a>
                 <a className="glass p-2 rounded-xl hover:glow" href="https://linkedin.com/" aria-label="LinkedIn" target="_blank" rel="noreferrer"><Linkedin /></a>
