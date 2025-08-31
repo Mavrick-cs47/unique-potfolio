@@ -55,10 +55,11 @@ export default function EmotionTheme() {
           const mouthWidth = Math.hypot(left.x - right.x, left.y - right.y);
           const mouthHeight = Math.hypot(top.x - bottom.x, top.y - bottom.y);
           const ratio = mouthHeight / mouthWidth;
-          // basic thresholds
+          // heuristics
           if (ratio > 0.22) dispatchMood('surprised');
-          else if (ratio > 0.14) dispatchMood('cheerful');
-          else dispatchMood('professional');
+          else if (ratio > 0.15) dispatchMood('happy');
+          else if (ratio < 0.08) dispatchMood('angry');
+          else dispatchMood('sad');
         }
         loopRef.current = requestAnimationFrame(loop);
       };
