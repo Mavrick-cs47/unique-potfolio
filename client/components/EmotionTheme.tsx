@@ -81,11 +81,12 @@ export default function EmotionTheme() {
 
   return (
     <div className="fixed bottom-6 left-6 z-40 flex items-center gap-2">
-      <button className="btn-neon" onClick={() => (enabled ? setEnabled(false) : requestConsent())}>{enabled ? 'Emotion: On' : 'Emotion Mode'}</button>
+      <button className="btn-neon" onClick={() => setEnabled((v)=>!v)}>{enabled ? 'Emotion: On' : 'Emotion Mode'}</button>
       <div className="glass p-2 rounded-xl flex items-center gap-2">
         <span className="text-xs opacity-80">Manual</span>
-        <button className="px-2 py-1 rounded bg-white/10 border border-white/20 text-xs" onClick={() => setManual('cheerful')}>Cheerful</button>
-        <button className="px-2 py-1 rounded bg-white/10 border border-white/20 text-xs" onClick={() => setManual('professional')}>Professional</button>
+        <button className="px-2 py-1 rounded bg-white/10 border border-white/20 text-xs" onClick={() => setManual('happy')}>Happy</button>
+        <button className="px-2 py-1 rounded bg-white/10 border border-white/20 text-xs" onClick={() => setManual('angry')}>Angry</button>
+        <button className="px-2 py-1 rounded bg-white/10 border border-white/20 text-xs" onClick={() => setManual('sad')}>Sad</button>
       </div>
       <audio ref={audioRef} loop volume={0.2 as any} />
       <video ref={videoRef} className="hidden" muted playsInline></video>
