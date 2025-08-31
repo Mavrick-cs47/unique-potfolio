@@ -153,7 +153,7 @@
     text-shadow: 0 0 10px hsl(var(--neon)/0.7), 0 0 20px hsl(var(--neon)/0.5);
   }
   .btn-neon {
-    @apply relative inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm md:text-base overflow-hidden transition-[filter,transform,box-shadow] duration-300; 
+    @apply relative inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm md:text-base overflow-hidden transition-[filter,transform,box-shadow] duration-300;
     color: hsl(var(--primary-foreground));
     background: radial-gradient(120% 180% at 0% 0%, hsl(var(--neon)/0.25) 0%, transparent 60%), linear-gradient(180deg, hsl(var(--primary)/0.95), hsl(var(--primary)/0.75));
     box-shadow: 0 10px 30px -12px hsl(var(--neon)/0.55), inset 0 0 0 1px hsl(var(--ring)/0.2);
@@ -162,10 +162,13 @@
   .btn-neon:active { transform: translateY(0px) scale(0.99); }
   .btn-neon .ripple { position: absolute; border-radius: 9999px; pointer-events: none; width: 20px; height: 20px; background: radial-gradient(circle, hsl(var(--neon)/0.35) 0%, transparent 60%); animation: ripple 600ms ease-out forwards; transform: translate(-50%, -50%); }
 
+  /* Ensure ripple keyframes exist even without Tailwind animation utility */
+  @keyframes ripple { 0% { transform: scale(0); opacity: 0.6; } 100% { transform: scale(4); opacity: 0; } }
+
   .tilt-3d { perspective: 1000px; transform-style: preserve-3d; }
 
   .marquee {
-    @apply overflow-hidden whitespace-nowrap; 
+    @apply overflow-hidden whitespace-nowrap;
   }
   .marquee-track {
     @apply inline-block will-change-transform; animation: marquee 30s linear infinite; }
