@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import RippleButton from "@/components/RippleButton";
 import Typewriter from "@/components/Typewriter";
