@@ -16,6 +16,7 @@ export default function SkillDataProvider({
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95, rotateX: 0 }}
+      animate={{ y: [0, -2, 0] }}
       whileInView={{ opacity: 1, scale: 1 }}
       whileHover={{
         scale: 1.08,
@@ -23,9 +24,10 @@ export default function SkillDataProvider({
         translateY: -2,
         boxShadow: "0 10px 30px -10px hsl(var(--neon)/.6)",
       }}
+      whileTap={{ scale: 1.05 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ delay: index * animationDelay, duration: 0.4 }}
-      className="p-3 rounded-xl border border-white/15 bg-white/5 hover:glow will-change-transform"
+      transition={{ delay: index * animationDelay, duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+      className="p-3 rounded-xl border border-white/15 bg-white/5 hover:glow will-change-transform w-16 h-16 sm:w-auto sm:h-auto"
       style={{ perspective: 600 }}
     >
       <img
@@ -33,7 +35,7 @@ export default function SkillDataProvider({
         alt="skill"
         width={width}
         height={height}
-        className="object-contain"
+        className="object-contain w-full h-full"
         onError={(e) => {
           (e.currentTarget as HTMLImageElement).src = fallback;
         }}
