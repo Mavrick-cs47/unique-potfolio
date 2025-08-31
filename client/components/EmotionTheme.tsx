@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-type Mood = 'cheerful' | 'professional' | 'surprised' | 'idle';
+type Mood = 'cheerful' | 'professional' | 'surprised' | 'happy' | 'angry' | 'sad' | 'idle';
 
 export default function EmotionTheme() {
   const [enabled, setEnabled] = useState(false);
