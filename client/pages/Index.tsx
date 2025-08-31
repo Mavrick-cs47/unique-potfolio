@@ -5,6 +5,7 @@ import Typewriter from "@/components/Typewriter";
 import ThreeBlob from "@/components/ThreeBlob";
 import ProjectsSection from "@/components/ProjectsSection";
 import RadarSkills from "@/components/RadarSkills";
+import SkillsShowcase from "@/components/SkillsShowcase";
 import MarqueeAchievements from "@/components/MarqueeAchievements";
 import HeroPortrait from "@/components/HeroPortrait";
 import CareerGalaxy from "@/components/CareerGalaxy";
