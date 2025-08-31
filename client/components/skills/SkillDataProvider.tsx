@@ -26,7 +26,12 @@ export default function SkillDataProvider({
       }}
       whileTap={{ scale: 1.05 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ delay: index * animationDelay, duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+      transition={{
+        delay: index * animationDelay,
+        duration: 0.8,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
       className="p-3 rounded-xl border border-white/15 bg-white/5 hover:glow will-change-transform w-16 h-16 sm:w-auto sm:h-auto"
       style={{ perspective: 600 }}
     >

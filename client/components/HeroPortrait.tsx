@@ -37,8 +37,8 @@ export default function HeroPortrait({
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const clientX = 'touches' in e ? e.touches[0].clientX : (e as any).clientX;
-    const clientY = 'touches' in e ? e.touches[0].clientY : (e as any).clientY;
+    const clientX = "touches" in e ? e.touches[0].clientX : (e as any).clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : (e as any).clientY;
     const px = (clientX - rect.left) / rect.width;
     const py = (clientY - rect.top) / rect.height;
     rx.set((py - 0.5) * -12);
@@ -50,9 +50,11 @@ export default function HeroPortrait({
   };
 
   useEffect(() => {
-    const coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    const coarse =
+      window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
     if (!coarse) return;
-    let raf = 0; const start = performance.now();
+    let raf = 0;
+    const start = performance.now();
     const loop = (t: number) => {
       const dt = (t - start) / 1000;
       rx.set(Math.sin(dt) * 4);
