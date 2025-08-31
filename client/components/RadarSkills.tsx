@@ -64,7 +64,7 @@ export default function RadarSkills({ skills }: Props) {
         {/* polygon */}
         <motion.polygon
           points={polygonPath}
-          fill={`hsla(var(--neon), 0.18)`}
+          fill={`hsl(var(--neon) / 0.18)`}
           stroke={`hsl(var(--neon))`}
           strokeWidth={2}
           initial={{ opacity: 0 }}
