@@ -36,13 +36,15 @@ export default function Index() {
     const colors: Record<string, [string, string, string]> = {
       hero: ["222 89% 52%", "280 87% 60%", "190 95% 55%"],
       about: ["200 100% 50%", "260 100% 64%", "178 100% 52%"],
+      career: ["260 100% 64%", "190 95% 55%", "312 100% 58%"],
       projects: ["312 100% 58%", "178 100% 52%", "224 100% 62%"],
       skills: ["178 100% 52%", "260 100% 64%", "312 100% 58%"],
       contact: ["224 100% 62%", "178 100% 52%", "312 100% 58%"],
     };
 
     const setGradient = (key: keyof typeof colors) => {
-      const [a, b, c] = colors[key];
+      const trio = colors[key] ?? colors.hero;
+      const [a, b, c] = trio;
       const root = document.documentElement;
       root.style.setProperty("--grad-1", a);
       root.style.setProperty("--grad-2", b);
