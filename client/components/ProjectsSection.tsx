@@ -100,9 +100,9 @@ function ParticleAura({ className }: { className?: string }) {
 
     const neonVar = getComputedStyle(document.documentElement).getPropertyValue('--neon').trim();
     const [hStr, sStr, lStr] = neonVar.split(/\s+/);
-    const h = parseFloat(hStr) || 178;
-    const s = (parseFloat(sStr) || 100) / 100;
-    const l = (parseFloat(lStr) || 52) / 100;
+    const hue = parseFloat(hStr) || 178;
+    const sat = (parseFloat(sStr) || 100) / 100;
+    const lig = (parseFloat(lStr) || 52) / 100;
     const hslToRgb = (hh: number, ss: number, ll: number): [number, number, number] => {
       const c = (1 - Math.abs(2 * ll - 1)) * ss;
       const hp = ((hh % 360) + 360) % 360 / 60;
@@ -117,7 +117,7 @@ function ParticleAura({ className }: { className?: string }) {
       const m = ll - c / 2;
       return [Math.round((r1 + m) * 255), Math.round((g1 + m) * 255), Math.round((b1 + m) * 255)];
     };
-    const [nr, ng, nb] = hslToRgb(h, s, l);
+    const [nr, ng, nb] = hslToRgb(hue, sat, lig);
     const neonColor = (a: number) => `rgba(${nr}, ${ng}, ${nb}, ${a})`;
 
     const particles = Array.from({ length: 24 }).map(() => ({
