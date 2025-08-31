@@ -94,6 +94,7 @@ export default function Index() {
 
   return (
     <main className="relative z-10">
+      <NeonToggle />
       <HRMode />
       <ChiragBot />
       {/* Hero */}
