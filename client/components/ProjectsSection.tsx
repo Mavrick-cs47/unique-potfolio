@@ -98,6 +98,28 @@ function ParticleAura({ className }: { className?: string }) {
     const ro = new ResizeObserver(scheduleResize);
     ro.observe(container);
 
+    const neonVar = getComputedStyle(document.documentElement).getPropertyValue('--neon').trim();
+    const [hStr, sStr, lStr] = neonVar.split(/\s+/);
+    const h = parseFloat(hStr) || 178;
+    const s = (parseFloat(sStr) || 100) / 100;
+    const l = (parseFloat(lStr) || 52) / 100;
+    const hslToRgb = (hh: number, ss: number, ll: number): [number, number, number] => {
+      const c = (1 - Math.abs(2 * ll - 1)) * ss;
+      const hp = ((hh % 360) + 360) % 360 / 60;
+      const x = c * (1 - Math.abs((hp % 2) - 1));
+      let r1 = 0, g1 = 0, b1 = 0;
+      if (hp >= 0 && hp < 1) { r1 = c; g1 = x; b1 = 0; }
+      else if (hp < 2) { r1 = x; g1 = c; b1 = 0; }
+      else if (hp < 3) { r1 = 0; g1 = c; b1 = x; }
+      else if (hp < 4) { r1 = 0; g1 = x; b1 = c; }
+      else if (hp < 5) { r1 = x; g1 = 0; b1 = c; }
+      else { r1 = c; g1 = 0; b1 = x; }
+      const m = ll - c / 2;
+      return [Math.round((r1 + m) * 255), Math.round((g1 + m) * 255), Math.round((b1 + m) * 255)];
+    };
+    const [nr, ng, nb] = hslToRgb(h, s, l);
+    const neonColor = (a: number) => `rgba(${nr}, ${ng}, ${nb}, ${a})`;
+
     const particles = Array.from({ length: 24 }).map(() => ({
       a: Math.random() * Math.PI * 2,
       r: 60 + Math.random() * 120,
@@ -115,7 +137,7 @@ function ParticleAura({ className }: { className?: string }) {
         const x = Math.cos(ang) * p.r + (Math.sin(dt * 0.6 + i) * 4);
         const y = Math.sin(ang) * p.r + (Math.cos(dt * 0.7 + i) * 4);
         const g = ctx.createRadialGradient(x, y, 0, x, y, p.size * 6);
-        g.addColorStop(0, 'hsla(var(--neon),0.9)');
+        g.addColorStop(0, neonColor(0.9));
         g.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = g;
         ctx.beginPath(); ctx.arc(x, y, p.size * 4, 0, Math.PI * 2); ctx.fill();
