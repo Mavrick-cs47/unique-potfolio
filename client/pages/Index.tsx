@@ -111,7 +111,7 @@ export default function Index() {
               <span className="block">Hi, I’m</span>
               <span className="text-gradient">Chirag Sharma 🚀</span>
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80 transition-colors duration-500">
+            <p className="text-lg md:text-xl text-foreground/80 transition-colors duration-500 text-anywhere text-balance">
               <Typewriter phrases={phrases} typingSpeed={28} pause={1600} />
             </p>
             <div className="flex flex-wrap items-center gap-4 pt-2">
