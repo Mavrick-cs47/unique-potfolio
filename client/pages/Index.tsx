@@ -9,6 +9,7 @@ import MarqueeAchievements from "@/components/MarqueeAchievements";
 import HeroPortrait from "@/components/HeroPortrait";
 import CareerGalaxy from "@/components/CareerGalaxy";
 import HRMode from "@/components/HRMode";
+import NeonToggle from "@/components/NeonToggle";
 import ChiragBot from "@/components/ChiragBot";
 import { Github, Linkedin, Mail, Sparkles } from "lucide-react";
 
