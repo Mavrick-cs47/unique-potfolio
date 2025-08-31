@@ -68,6 +68,8 @@ export default function HeroPortrait({
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
+      onTouchMove={onMove}
+      onTouchEnd={onLeave}
       style={{ rotate, y, scale, rotateX: rx, rotateY: ry }}
       className="relative h-full w-full rounded-[28px] overflow-hidden glass neon-border will-change-transform"
     >
