@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useMemo, useRef, useState } from "react";
+import { Suspense, useMemo, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 
 type Milestone = { id: string; title: string; subtitle: string; year: string; position: [number, number, number]; color?: string };
