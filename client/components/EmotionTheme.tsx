@@ -14,17 +14,19 @@ export default function EmotionTheme() {
   const dispatchMood = (m: Mood) => {
     setMood(m);
     const root = document.documentElement;
-    root.classList.remove('mood-cheerful','mood-professional','mood-surprised');
-    if (m === 'cheerful') root.classList.add('mood-cheerful');
+    root.classList.remove('mood-cheerful','mood-professional','mood-surprised','mood-happy','mood-angry','mood-sad');
+    if (m === 'cheerful' || m === 'happy') root.classList.add('mood-happy','mood-cheerful');
     if (m === 'professional') root.classList.add('mood-professional');
     if (m === 'surprised') root.classList.add('mood-surprised');
-    const tagline = m === 'cheerful' ? 'Your smile just lit up my universe 🌟.' : m === 'professional' ? 'Focus mode: Let me show you what I’ve built 🚀.' : m === 'surprised' ? 'Whoa! You just discovered surprise mode ✨.' : undefined;
+    if (m === 'angry') root.classList.add('mood-angry');
+    if (m === 'sad') root.classList.add('mood-sad');
+    const tagline = m === 'happy' || m === 'cheerful' ? 'Your smile just lit up my universe 🌟.' : m === 'professional' ? 'Focus mode: Let me show you what I’ve built 🚀.' : m === 'surprised' ? 'Whoa! You just discovered surprise mode ✨.' : m === 'angry' ? 'Taking a strong stance. Let’s build boldly 🔥.' : m === 'sad' ? 'Calm mode engaged. Here’s what I’ve crafted 🤎.' : undefined;
     window.dispatchEvent(new CustomEvent('mood-change', { detail: { mood: m, tagline } }));
     // audio mood
     if (!audioRef.current) return;
-    if (m === 'cheerful') { audioRef.current.src = 'https://cdn.pixabay.com/download/audio/2022/03/10/audio_3a7e2a662a.mp3?filename=happy-day-112194.mp3'; audioRef.current.play().catch(()=>{}); }
-    else if (m === 'professional') { audioRef.current.src = 'https://cdn.pixabay.com/download/audio/2021/09/01/audio_81e0d90b76.mp3?filename=ambient-piano-110241.mp3'; audioRef.current.play().catch(()=>{}); }
-    else if (m === 'surprised') { audioRef.current.src = 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_3fc7b0df56.mp3?filename=cinematic-whoosh-hit-14596.mp3'; audioRef.current.play().catch(()=>{}); }
+    if (m === 'happy' || m === 'cheerful') { audioRef.current.src = 'https://cdn.pixabay.com/download/audio/2022/03/10/audio_3a7e2a662a.mp3?filename=happy-day-112194.mp3'; audioRef.current.play().catch(()=>{}); }
+    else if (m === 'professional' || m === 'sad') { audioRef.current.src = 'https://cdn.pixabay.com/download/audio/2021/09/01/audio_81e0d90b76.mp3?filename=ambient-piano-110241.mp3'; audioRef.current.play().catch(()=>{}); }
+    else if (m === 'surprised' || m === 'angry') { audioRef.current.src = 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_3fc7b0df56.mp3?filename=cinematic-whoosh-hit-14596.mp3'; audioRef.current.play().catch(()=>{}); }
   };
 
   const loadScripts = async () => {
