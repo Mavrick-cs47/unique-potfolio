@@ -78,11 +78,25 @@ function ParticleAura({ className }: { className?: string }) {
   useEffect(() => {
     const canvas = canvasRef.current; if (!canvas) return;
     const ctx = canvas.getContext('2d'); if (!ctx) return;
-    let w = canvas.clientWidth, h = canvas.clientHeight;
+    const container = (canvas.parentElement as HTMLElement) || canvas;
+    let w = container.clientWidth, h = container.clientHeight;
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    const resize = () => { w = canvas.clientWidth; h = canvas.clientHeight; canvas.width = w * dpr; canvas.height = h * dpr; ctx.resetTransform(); ctx.scale(dpr, dpr); };
-    resize();
-    const ro = new ResizeObserver(resize); ro.observe(canvas);
+
+    let resizeRaf = 0;
+    const doResize = () => {
+      w = container.clientWidth; h = container.clientHeight;
+      canvas.width = Math.max(1, Math.floor(w * dpr));
+      canvas.height = Math.max(1, Math.floor(h * dpr));
+      if ((ctx as any).resetTransform) (ctx as any).resetTransform(); else ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(dpr, dpr);
+    };
+    const scheduleResize = () => {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(doResize);
+    };
+    scheduleResize();
+    const ro = new ResizeObserver(scheduleResize);
+    ro.observe(container);
 
     const particles = Array.from({ length: 24 }).map(() => ({
       a: Math.random() * Math.PI * 2,
@@ -110,7 +124,7 @@ function ParticleAura({ className }: { className?: string }) {
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+    return () => { cancelAnimationFrame(raf); if (resizeRaf) cancelAnimationFrame(resizeRaf); ro.disconnect(); };
   }, []);
   return <canvas ref={canvasRef} className={className} />;
 }
