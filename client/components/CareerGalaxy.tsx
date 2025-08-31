@@ -2,16 +2,25 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useMemo, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 
-export type Milestone = { id: string; title: string; subtitle: string; year?: string; description?: string; color?: string; radius?: number; speed?: number };
+export type Milestone = { id: string; title: string; subtitle: string; year?: string; description?: string; color?: string; radius?: number; speed?: number; textureUrl?: string; size?: number };
+
+const tex = {
+  earth: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg",
+  mars: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mars_1k_color.jpg",
+  jupiter: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/jupiter.jpg",
+  venus: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/venus.jpg",
+  mercury: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mercury.jpg",
+  neptune: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/neptune.jpg",
+};
 
 const milestones: Milestone[] = [
-  { id: "scholarship", year: "2023", title: "Scholarship", subtitle: "Awarded 50% External Scholarship", description: "Recognized for academic excellence.", color: "#7dd3fc", radius: 1.8, speed: 0.25 },
-  { id: "seminar", year: "2024", title: "Seminar", subtitle: "Hosted Stroke Awareness Seminar", description: "Organized and presented an impactful seminar.", color: "#93c5fd", radius: 2.2, speed: 0.2 },
-  { id: "hackathon", year: "2025", title: "Hackathon Participation", subtitle: "Participated in Hackathon 2025", description: "Focused on learning and innovation.", color: "#f0abfc", radius: 2.6, speed: 0.3 },
-  { id: "agriplay", title: "AgriPlay", subtitle: "Smart agriculture game", description: "Educates farmers with playful simulations.", color: "#34d399", radius: 1.2, speed: 0.35 },
-  { id: "sign-speech", title: "Sign → Speech", subtitle: "Sign language to speech", description: "Real-time gesture to speech.", color: "#60a5fa", radius: 1.5, speed: 0.32 },
-  { id: "skinscope", title: "SkinScope", subtitle: "Skin condition analyzer", description: "Image-based diagnostics.", color: "#f472b6", radius: 1.7, speed: 0.28 },
-  { id: "deloitte", title: "Deloitte Health Dashboard", subtitle: "Healthcare analytics", description: "Actionable dashboards for insights.", color: "#a78bfa", radius: 2.0, speed: 0.26 },
+  { id: "scholarship", year: "2023", title: "Scholarship", subtitle: "Awarded 50% External Scholarship", description: "Recognized for academic excellence.", color: "#7dd3fc", radius: 2.2, speed: 0.22, textureUrl: tex.earth, size: 0.38 },
+  { id: "seminar", year: "2024", title: "Seminar", subtitle: "Hosted Stroke Awareness Seminar", description: "Organized and presented an impactful seminar.", color: "#93c5fd", radius: 2.8, speed: 0.2, textureUrl: tex.venus, size: 0.34 },
+  { id: "hackathon", year: "2025", title: "Hackathon Participation", subtitle: "Participated in Hackathon 2025", description: "Focused on learning and innovation.", color: "#f0abfc", radius: 3.2, speed: 0.28, textureUrl: tex.mars, size: 0.32 },
+  { id: "agriplay", title: "AgriPlay", subtitle: "Smart agriculture game", description: "Educates farmers with playful simulations.", color: "#34d399", radius: 1.7, speed: 0.35, textureUrl: tex.jupiter, size: 0.55 },
+  { id: "sign-speech", title: "Sign → Speech", subtitle: "Sign language to speech", description: "Real-time gesture to speech.", color: "#60a5fa", radius: 2.0, speed: 0.32, textureUrl: tex.neptune, size: 0.4 },
+  { id: "skinscope", title: "SkinScope", subtitle: "Skin condition analyzer", description: "Image-based diagnostics.", color: "#f472b6", radius: 2.4, speed: 0.27, textureUrl: tex.mercury, size: 0.3 },
+  { id: "deloitte", title: "Deloitte Health Dashboard", subtitle: "Healthcare analytics", description: "Actionable dashboards for insights.", color: "#a78bfa", radius: 2.6, speed: 0.26, textureUrl: tex.earth, size: 0.36 },
 ];
 
 function Starfield() {
