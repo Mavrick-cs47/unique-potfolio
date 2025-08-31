@@ -11,6 +11,8 @@ interface Project {
   repo?: string;
   emoji?: string;
   features?: string[];
+  image?: string;
+  imageAlt?: string;
 }
 
 const projects: Project[] = [
@@ -21,6 +23,8 @@ const projects: Project[] = [
     tags: ["MongoDB", "Express", "React", "Node.js", "Payments"],
     link: "#",
     repo: "#",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2Fc1b75292535b4951ad19acdee978113f?format=webp&width=800",
+    imageAlt: "Hotel booking website UI",
     features: [
       "User authentication",
       "Room search & availability",
@@ -34,6 +38,8 @@ const projects: Project[] = [
     tags: ["AI/ML", "Python", "OpenCV", "Web"],
     link: "#",
     repo: "#",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F4419066ca13144c788fa7a14ef32aa46?format=webp&width=800",
+    imageAlt: "SkinScope analysis UI",
     features: [
       "Image upload & analysis",
       "Instant predictions",
@@ -47,6 +53,8 @@ const projects: Project[] = [
     tags: ["Web", "Animations", "AR‑style"],
     link: "#",
     repo: "#",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F20dcab1e1d8b4182831780188d1a810c?format=webp&width=800",
+    imageAlt: "Invisibility T-shirt demo UI",
     features: [
       "Interactive UI",
       "Hover-triggered invisibility",
@@ -227,6 +235,9 @@ export default function ProjectsSection() {
 
                 <div className="grid md:grid-cols-2 gap-6 items-center">
                   <div className="relative aspect-video rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 overflow-hidden">
+                    {active.image && (
+                      <img src={active.image} alt={active.imageAlt || active.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+                    )}
                     <div className="absolute inset-0 opacity-70 bg-[radial-gradient(600px_300px_at_40%_20%,hsl(var(--neon)/.25),transparent_60%)]" />
                     <div className="absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_70%)]">
                       <ParticleAura className="absolute inset-0" />
@@ -281,6 +292,9 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
       >
         <div className="absolute -inset-20 opacity-25 bg-[radial-gradient(500px_300px_at_20%_0%,hsl(var(--neon)/.35),transparent_60%)]" />
         <div className="relative aspect-video rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 group-hover:glow transition-shadow overflow-hidden">
+          {project.image && (
+            <img src={project.image} alt={project.imageAlt || project.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+          )}
           <div className="absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_70%)]">
             <ParticleAura className="absolute inset-0" />
           </div>
