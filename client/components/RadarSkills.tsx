@@ -52,6 +52,7 @@ export default function RadarSkills({ skills }: Props) {
   return (
     <div className="relative w-full max-w-[360px]">
       <svg viewBox="0 0 320 320" className="w-full h-auto">
+        <motion.g animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }}>
         {/* grid rings */}
         {grid.map((g, idx) => (
           <polygon key={idx} points={g} fill="none" stroke="hsl(var(--border))" strokeOpacity={0.3} />
@@ -75,7 +76,7 @@ export default function RadarSkills({ skills }: Props) {
         {/* nodes */}
         {points.map((p, i) => (
           <g key={`node-${i}`} onMouseEnter={() => setHoverIndex(i)} onMouseLeave={() => setHoverIndex((v) => (v === i ? null : v))}>
-            <motion.circle cx={p.x} cy={p.y} r={hoverIndex === i ? 7 : 5} fill={`hsl(var(--neon))`} filter="url(#glow)" />
+            <motion.circle cx={p.x} cy={p.y} r={hoverIndex === i ? 7 : 5} fill={`hsl(var(--neon))`} filter="url(#glow)" animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2, repeat: Infinity }} />
             <motion.text
               x={p.x}
               y={p.y - 10}
@@ -88,6 +89,7 @@ export default function RadarSkills({ skills }: Props) {
             </motion.text>
           </g>
         ))}
+        </motion.g>
         <defs>
           <filter id="glow">
             <feGaussianBlur stdDeviation="4.5" result="coloredBlur" />
