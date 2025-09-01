@@ -177,25 +177,25 @@ export default function CareerGalaxy() {
   return (
     <section data-section="career" className="relative py-24 select-none">
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
           <h2 className="text-3xl md:text-5xl font-extrabold text-gradient">
             Achievement Metro
           </h2>
           <div className="flex items-center gap-2">
             <button
-              className="btn-neon"
+              className="btn-neon px-3 py-1 text-sm md:px-6 md:py-3"
               onClick={() => setScale((s) => Math.min(2, s + 0.15))}
             >
               Zoom +
             </button>
             <button
-              className="btn-neon"
+              className="btn-neon px-3 py-1 text-sm md:px-6 md:py-3"
               onClick={() => setScale((s) => Math.max(0.6, s - 0.15))}
             >
               Zoom −
             </button>
             <button
-              className="btn-neon"
+              className="btn-neon px-3 py-1 text-sm md:px-6 md:py-3"
               onClick={() => {
                 setScale(1);
                 setOffset({ x: 0, y: 0 });
