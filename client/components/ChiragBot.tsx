@@ -39,9 +39,9 @@ export default function ChiragBot() {
   };
 
   return (
-    <div className="fixed bottom-24 right-6 z-40">
+    <div className="fixed bottom-20 right-3 left-3 sm:left-auto sm:right-6 z-40">
       {open && (
-        <div className="glass neon-border w-[320px] h-[380px] rounded-2xl p-4 flex flex-col">
+        <div className="glass neon-border w-full sm:w-[320px] h-[60vh] sm:h-[380px] rounded-2xl p-4 flex flex-col">
           <div className="font-semibold mb-2">ChiragBot</div>
           <div className="flex-1 overflow-y-auto space-y-2">
             {msgs.map((m, i) => (
@@ -73,7 +73,7 @@ export default function ChiragBot() {
           </form>
         </div>
       )}
-      <button className="btn-neon" onClick={() => setOpen((v) => !v)}>
+      <button className="btn-neon text-sm px-3 py-2" onClick={() => setOpen((v) => !v)}>
         {open ? "Close ChiragBot" : "Chat with ChiragBot"}
       </button>
     </div>
