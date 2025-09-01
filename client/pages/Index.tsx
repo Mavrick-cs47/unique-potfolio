@@ -178,7 +178,7 @@ export default function Index() {
           <h2 className="text-3xl md:text-5xl font-extrabold mb-10 text-gradient">
             About Me
           </h2>
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-10">
             {/* Timeline */}
             <div className="space-y-8">
               {[
@@ -274,7 +274,7 @@ export default function Index() {
           <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-gradient">
             Let’s build something amazing
           </h2>
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-10">
             <form
               className="glass neon-border p-6 md:p-8 rounded-2xl space-y-4"
               onSubmit={(e) => {
@@ -316,12 +316,12 @@ export default function Index() {
                 <p className="text-foreground/80">
                   Open to internships, collaborations, and exciting projects.
                 </p>
-                <div className="mt-4 flex gap-3">
-                  <a className="btn-neon" href="mailto:hello@example.com">
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <a className="btn-neon px-3 py-2 text-sm md:px-6 md:py-3" href="mailto:hello@example.com">
                     <Mail size={16} className="mr-2" /> Email
                   </a>
                   <a
-                    className="btn-neon"
+                    className="btn-neon px-3 py-2 text-sm md:px-6 md:py-3"
                     href="https://github.com/"
                     target="_blank"
                     rel="noreferrer"
@@ -329,7 +329,7 @@ export default function Index() {
                     <Github size={16} className="mr-2" /> GitHub
                   </a>
                   <a
-                    className="btn-neon"
+                    className="btn-neon px-3 py-2 text-sm md:px-6 md:py-3"
                     href="https://linkedin.com/"
                     target="_blank"
                     rel="noreferrer"
