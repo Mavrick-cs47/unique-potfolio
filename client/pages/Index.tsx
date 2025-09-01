@@ -105,7 +105,7 @@ export default function Index() {
         <div className="absolute inset-0">
           <ThreeBlob />
         </div>
-        <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-10 py-20">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 grid md:grid-cols-2 gap-8 md:gap-10 py-16 md:py-20">
           <motion.div style={{ y: yHero }} className="space-y-6">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
               <span className="block">Hi, I’m</span>
