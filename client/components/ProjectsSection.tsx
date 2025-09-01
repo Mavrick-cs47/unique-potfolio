@@ -339,7 +339,7 @@ export default function ProjectsSection() {
                       />
                     )}
                     <div className="absolute inset-0 opacity-70 bg-[radial-gradient(600px_300px_at_40%_20%,hsl(var(--neon)/.25),transparent_60%)]" />
-                    <div className="absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_70%)]">
+                    <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(circle_at_center,black,transparent_70%)]">
                       <ParticleAura className="absolute inset-0" />
                     </div>
                   </div>
@@ -426,7 +426,7 @@ function ProjectCard({ project }: { project: Project }) {
               className="absolute inset-0 h-full w-full object-cover"
             />
           )}
-          <div className="absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_70%)]">
+          <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(circle_at_center,black,transparent_70%)]">
             <ParticleAura className="absolute inset-0" />
           </div>
         </div>
