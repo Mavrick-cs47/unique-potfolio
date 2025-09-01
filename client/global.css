@@ -175,6 +175,12 @@
     font-family: "Orbitron", "Outfit", system-ui, sans-serif;
     letter-spacing: 0.02em;
   }
+
+  /* Make media responsive by default */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* Components and utilities */
