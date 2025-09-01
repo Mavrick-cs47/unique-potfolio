@@ -39,7 +39,10 @@ export default function ChiragBot() {
   };
 
   return (
-    <div className="fixed bottom-20 right-3 left-3 sm:left-auto sm:right-6 z-40">
+    <div
+      className="fixed bottom-20 right-3 left-3 sm:left-auto sm:right-6 z-40"
+      style={{ bottom: "calc(5rem + env(safe-area-inset-bottom))" }}
+    >
       {open && (
         <div className="glass neon-border w-full sm:w-[320px] h-[60vh] sm:h-[380px] rounded-2xl p-4 flex flex-col">
           <div className="font-semibold mb-2">ChiragBot</div>
