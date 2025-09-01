@@ -211,12 +211,31 @@ export default function CareerGalaxy() {
         </p>
 
         <div
-          className="relative h-[520px] rounded-2xl glass neon-border overflow-hidden"
+          className="relative h-[520px] rounded-2xl glass neon-border overflow-hidden touch-none"
           onWheel={onWheel}
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onMouseUp={endDrag}
           onMouseLeave={endDrag}
+          onTouchStart={(e) => {
+            dragging.current = true;
+            last.current = {
+              x: e.touches[0].clientX,
+              y: e.touches[0].clientY,
+            };
+          }}
+          onTouchMove={(e) => {
+            if (!dragging.current) return;
+            const dx = e.touches[0].clientX - last.current.x;
+            const dy = e.touches[0].clientY - last.current.y;
+            last.current = {
+              x: e.touches[0].clientX,
+              y: e.touches[0].clientY,
+            };
+            setOffset((o) => ({ x: o.x + dx, y: o.y + dy }));
+            e.preventDefault();
+          }}
+          onTouchEnd={endDrag}
         >
           <div
             className="absolute inset-0"
