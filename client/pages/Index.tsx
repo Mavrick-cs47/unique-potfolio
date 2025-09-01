@@ -174,7 +174,7 @@ export default function Index() {
 
       {/* About */}
       <section data-section="about" id="about" className="relative py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-3xl md:text-5xl font-extrabold mb-10 text-gradient">
             About Me
           </h2>
@@ -256,21 +256,21 @@ export default function Index() {
 
       {/* Skills */}
       <section data-section="skills" id="skills" className="relative py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <SkillsShowcase />
         </div>
       </section>
 
       {/* Achievements */}
       <section className="relative py-10">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <MarqueeAchievements />
         </div>
       </section>
 
       {/* Contact */}
       <section data-section="contact" id="contact" className="relative py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-gradient">
             Let’s build something amazing
           </h2>
@@ -353,7 +353,7 @@ export default function Index() {
 
       {/* Footer */}
       <footer className="relative py-10">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="futuristic-line mb-6" />
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-foreground/70">
