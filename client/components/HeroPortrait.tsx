@@ -5,7 +5,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Props {
   src?: string;
@@ -22,7 +22,7 @@ export default function HeroPortrait({
     offset: ["start end", "end start"],
   });
   const rotate = useTransform(scrollYProgress, [0, 1], [-8, 8]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const yScroll = useTransform(scrollYProgress, [0, 1], [0, -40]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.04]);
 
   const rx = useSpring(useMotionValue(0), { stiffness: 120, damping: 20 });
@@ -32,6 +32,15 @@ export default function HeroPortrait({
     const img = new Image();
     img.src = src;
   }, [src]);
+
+  const [staticMobile, setStaticMobile] = useState(false);
+  useEffect(() => {
+    const coarse =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(pointer: coarse)").matches;
+    setStaticMobile(coarse);
+  }, []);
 
   const onMove = (e: React.MouseEvent | React.TouchEvent) => {
     const el = ref.current;
@@ -72,10 +81,10 @@ export default function HeroPortrait({
       onMouseLeave={onLeave}
       onTouchMove={onMove}
       onTouchEnd={onLeave}
-      style={{ rotate, y, scale, rotateX: rx, rotateY: ry }}
+      style={{ rotate, y: staticMobile ? 0 : (yScroll as any), scale, rotateX: rx, rotateY: ry }}
       className="relative h-full w-full rounded-[28px] overflow-hidden glass neon-border will-change-transform"
     >
-      <img src={src} alt={alt} className="h-full w-full object-cover" />
+      <img src={src} alt={alt} className="h-full w-full object-contain md:object-cover object-center" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(100%_60%_at_50%_40%,transparent,rgba(0,0,0,0.25))]" />
     </motion.div>
   );
