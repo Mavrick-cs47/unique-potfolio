@@ -166,6 +166,7 @@
     background-attachment: fixed;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
 
   h1,
