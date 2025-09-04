@@ -66,8 +66,8 @@ export default function HeroPortrait({
     const start = performance.now();
     const loop = (t: number) => {
       const dt = (t - start) / 1000;
-      rx.set(Math.sin(dt) * 4);
-      ry.set(Math.cos(dt * 0.9) * 4);
+      rx.set(Math.sin(dt) * 8);
+      ry.set(Math.cos(dt * 0.9) * 8);
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -81,7 +81,14 @@ export default function HeroPortrait({
       onMouseLeave={onLeave}
       onTouchMove={onMove}
       onTouchEnd={onLeave}
-      style={{ rotate, y: staticMobile ? 0 : (yScroll as any), scale, rotateX: rx, rotateY: ry }}
+      style={{
+        rotate,
+        y: staticMobile ? 0 : (yScroll as any),
+        scale,
+        rotateX: rx,
+        rotateY: ry,
+        perspective: 800,
+      }}
       className="relative h-full w-full rounded-[28px] overflow-hidden glass neon-border will-change-transform"
     >
       <img src={src} alt={alt} className="h-full w-full object-contain md:object-cover object-center" />
