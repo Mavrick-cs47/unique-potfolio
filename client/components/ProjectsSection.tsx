@@ -34,20 +34,20 @@ const projects: Project[] = [
     ],
   },
   {
-    id: "ai-skin-doctor",
-    title: "AI SkinDoctor 🤖🩺",
+    id: "dream2design",
+    title: "Dream2Design ✨",
     description:
-      "AI/ML-powered skin diagnosis with image analysis and instant predictions.",
-    tags: ["AI/ML", "Python", "OpenCV", "Web"],
-    link: "https://skindoc-f19d27.netlify.app/",
+      "Turn your dreams into visuals. Type a dream and let AI capture, visualize, and explain it in a sleek, futuristic space.",
+    tags: ["AI", "Generative", "Web"],
+    link: "https://dream2design.netlify.app/",
     repo: "#",
     image:
-      "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F4419066ca13144c788fa7a14ef32aa46?format=webp&width=800",
-    imageAlt: "SkinScope analysis UI",
+      "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F37af70afef544ad1ac6a9cbfe5d53163?format=webp&width=800",
+    imageAlt: "Dream2Design app home screen",
     features: [
-      "Image upload & analysis",
-      "Instant predictions",
-      "Modern, accessible UI",
+      "Capture dreams in seconds",
+      "AI visualizes dream scenes",
+      "Insights into symbols and emotions",
     ],
   },
   {
@@ -56,7 +56,7 @@ const projects: Project[] = [
     description:
       "AR-style web experience simulating invisibility with playful animations.",
     tags: ["Web", "Animations", "AR‑style"],
-    link: "https://invisiblecscloak.netlify.app/",
+    link: "https://yellowtshirtmagic.netlify.app/",
     repo: "#",
     image:
       "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2F20dcab1e1d8b4182831780188d1a810c?format=webp&width=800",
