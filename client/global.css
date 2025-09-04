@@ -130,6 +130,12 @@
     @apply border-border;
   }
 
+  html, body {
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    max-width: 100%;
+  }
+
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
     font-family:
@@ -165,8 +171,6 @@
       );
     background-attachment: fixed;
     scroll-behavior: smooth;
-    overflow-x: hidden;
-    overscroll-behavior-x: none;
   }
 
   h1,

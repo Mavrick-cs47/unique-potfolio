@@ -40,11 +40,15 @@ export default function ChiragBot() {
 
   return (
     <div
-      className="fixed bottom-20 right-3 left-3 sm:left-auto sm:right-6 z-40"
-      style={{ bottom: "calc(5rem + env(safe-area-inset-bottom))" }}
+      className="fixed z-40"
+      style={{
+        bottom: "calc(5rem + env(safe-area-inset-bottom))",
+        left: "calc(0.75rem + env(safe-area-inset-left))",
+        right: "calc(0.75rem + env(safe-area-inset-right))",
+      }}
     >
       {open && (
-        <div className="glass neon-border w-full sm:w-[320px] h-[60vh] sm:h-[380px] rounded-2xl p-4 flex flex-col">
+        <div className="glass neon-border w-full max-w-[520px] sm:w-[320px] h-[60vh] sm:h-[380px] mx-auto rounded-2xl p-4 flex flex-col">
           <div className="font-semibold mb-2">ChiragBot</div>
           <div className="flex-1 overflow-y-auto space-y-2">
             {msgs.map((m, i) => (

@@ -12,8 +12,11 @@ export default function NeonToggle() {
   return (
     <button
       onClick={toggle}
-      className="fixed top-4 right-4 z-40 btn-neon px-4 py-2 md:hidden"
-      style={{ top: "calc(1rem + env(safe-area-inset-top))" }}
+      className="fixed z-40 btn-neon px-4 py-2 md:hidden"
+      style={{
+        top: "calc(1rem + env(safe-area-inset-top))",
+        right: "calc(1rem + env(safe-area-inset-right))",
+      }}
       aria-label="Toggle Neon Mode"
     >
       {on ? "Neon: On" : "Neon"}

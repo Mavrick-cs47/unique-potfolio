@@ -41,8 +41,11 @@ export default function HRMode() {
     <button
       aria-label="HR Mode"
       onClick={run}
-      className="fixed bottom-6 right-3 md:right-6 z-40 btn-neon shadow-xl text-sm px-3 py-2"
-      style={{ bottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
+      className="fixed z-40 btn-neon shadow-xl text-sm px-3 py-2"
+      style={{
+        bottom: "calc(1.5rem + env(safe-area-inset-bottom))",
+        right: "calc(0.75rem + env(safe-area-inset-right))",
+      }}
     >
       {active ? "Narrating…" : "HR Mode"}
     </button>
