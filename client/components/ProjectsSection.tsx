@@ -67,6 +67,23 @@ const projects: Project[] = [
       "Fun experimental design",
     ],
   },
+  {
+    id: "image-bg-remover",
+    title: "Image Background Remover 🪄",
+    description:
+      "Upload an image and instantly remove the background for clean, share-ready results.",
+    tags: ["AI", "Image", "Web"],
+    link: "https://csbgremover.netlify.app/",
+    repo: "#",
+    image:
+      "https://cdn.builder.io/api/v1/image/assets%2F593ada92f6a849fdaf6600d87713b3e8%2Fb2ec6e6ac51246098bbfc8a97e79ec64?format=webp&width=800",
+    imageAlt: "Image background remover landing page",
+    features: [
+      "One-click background removal",
+      "High-quality transparent output",
+      "Fast, mobile-friendly UI",
+    ],
+  },
 ];
 
 function useTilt() {
