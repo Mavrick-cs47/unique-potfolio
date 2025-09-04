@@ -445,7 +445,7 @@ export default function ProjectsSection() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const { ref, onMouseMove, onLeave } = useTilt();
+  const { ref, onMouseMove, onTouchMove, onLeave } = useTilt();
   const gradient = useMemo(
     () => `linear-gradient(135deg, hsl(var(--neon) / 0.20), transparent)`,
     [],
