@@ -318,7 +318,10 @@ export default function Index() {
                   Open to internships, collaborations, and exciting projects.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
-                  <a className="btn-neon px-3 py-2 text-sm md:px-6 md:py-3" href="mailto:hello@example.com">
+                  <a
+                    className="btn-neon px-3 py-2 text-sm md:px-6 md:py-3"
+                    href="mailto:hello@example.com"
+                  >
                     <Mail size={16} className="mr-2" /> Email
                   </a>
                   <a
