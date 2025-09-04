@@ -465,6 +465,8 @@ function ProjectCard({ project }: { project: Project }) {
         rel="noreferrer"
         ref={ref as any}
         onMouseMove={onMouseMove}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onLeave}
         onMouseLeave={onLeave}
         className="block relative glass neon-border p-5 rounded-2xl transition-transform will-change-transform overflow-hidden"
         style={{ backgroundImage: gradient }}
