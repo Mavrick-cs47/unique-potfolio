@@ -91,7 +91,11 @@ export default function HeroPortrait({
       }}
       className="relative h-full w-full rounded-[28px] overflow-hidden glass neon-border will-change-transform"
     >
-      <img src={src} alt={alt} className="h-full w-full object-contain md:object-cover object-center" />
+      <img
+        src={src}
+        alt={alt}
+        className="h-full w-full object-contain md:object-cover object-center"
+      />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(100%_60%_at_50%_40%,transparent,rgba(0,0,0,0.25))]" />
     </motion.div>
   );

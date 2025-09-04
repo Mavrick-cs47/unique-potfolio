@@ -80,7 +80,10 @@ export default function ChiragBot() {
           </form>
         </div>
       )}
-      <button className="btn-neon text-sm px-3 py-2" onClick={() => setOpen((v) => !v)}>
+      <button
+        className="btn-neon text-sm px-3 py-2"
+        onClick={() => setOpen((v) => !v)}
+      >
         {open ? "Close ChiragBot" : "Chat with ChiragBot"}
       </button>
     </div>

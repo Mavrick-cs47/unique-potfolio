@@ -130,7 +130,8 @@
     @apply border-border;
   }
 
-  html, body {
+  html,
+  body {
     overflow-x: hidden;
     overscroll-behavior-x: none;
     max-width: 100%;
@@ -534,8 +535,12 @@
     animation: marquee 20s linear infinite;
   }
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
   .futuristic-line {
