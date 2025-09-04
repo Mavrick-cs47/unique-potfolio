@@ -88,22 +88,58 @@ const projects: Project[] = [
 
 function useTilt() {
   const ref = useRef<HTMLElement | null>(null);
-  const onMouseMove = useCallback((e: React.MouseEvent) => {
+  const coarseRef = useRef(false);
+  const rafRef = useRef(0);
+
+  useEffect(() => {
+    coarseRef.current =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(pointer: coarse)").matches;
+    if (!coarseRef.current) return;
+    // Gentle auto-tilt for touch devices
+    const start = performance.now();
+    const loop = (t: number) => {
+      const dt = (t - start) / 1000;
+      const x = Math.sin(dt * 0.8) * 4; // rotateX
+      const y = Math.cos(dt * 0.9) * -4; // rotateY
+      const el = ref.current;
+      if (el) el.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
+      rafRef.current = requestAnimationFrame(loop);
+    };
+    rafRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  const setTilt = (clientX: number, clientY: number) => {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
+    const px = (clientX - rect.left) / rect.width;
+    const py = (clientY - rect.top) / rect.height;
     const x = (py - 0.5) * 10; // rotateX
     const y = (px - 0.5) * -10; // rotateY
     el.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
+  };
+
+  const onMouseMove = useCallback((e: React.MouseEvent) => {
+    setTilt(e.clientX, e.clientY);
   }, []);
+
+  const onTouchMove = useCallback((e: React.TouchEvent) => {
+    const t = e.touches[0];
+    if (!t) return;
+    cancelAnimationFrame(rafRef.current);
+    setTilt(t.clientX, t.clientY);
+  }, []);
+
   const onLeave = useCallback(() => {
     const el = ref.current;
     if (!el) return;
     el.style.transform = `rotateX(0deg) rotateY(0deg)`;
   }, []);
-  return { ref, onMouseMove, onLeave };
+
+  return { ref, onMouseMove, onTouchMove, onLeave };
 }
 
 function ParticleAura({ className }: { className?: string }) {
