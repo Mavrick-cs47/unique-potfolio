@@ -27,6 +27,7 @@ export default function Index() {
         const data = await res.json();
         if (data && data.city) city = data.city;
       } catch {}
+      if (city.toLowerCase() === "jalandhar") city = "user";
       const now = new Date();
       const time = new Intl.DateTimeFormat(undefined, {
         hour: "2-digit",
